@@ -1,3 +1,5 @@
+using EventHandler;
+
 namespace StateMachine.PlayerState
 {
     public class MoveState : BaseState
@@ -27,7 +29,6 @@ namespace StateMachine.PlayerState
         private void Move()
         {
             isRunning = true;
-            _actor.currentJumpAvailable = 1;
             RunAnimation(RUNNING, isRunning);
         }
         private void StopMove()

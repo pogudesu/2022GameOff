@@ -1,3 +1,5 @@
+using EventHandler;
+
 namespace StateMachine.PlayerState
 {
     public class IdleState : BaseState
@@ -29,7 +31,6 @@ namespace StateMachine.PlayerState
         {
             isIdle = true;
             RunAnimation(IDLE, isIdle);
-            _actor.currentJumpAvailable = 1;
         }
 
         private void StopIdle()

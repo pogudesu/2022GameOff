@@ -46,25 +46,13 @@ namespace Player
         {
             float horizontal = Input.GetAxis("Horizontal");
             bool isJumpPressed = Input.GetKey(KeyCode.Space);
-            //
-            // _animator.SetBool("Jump", isJumpPressed);
-            // _animator.SetBool("IsGround", isGounded);
-            // _animator.SetFloat("Horizontal", horizontal);
-            // if (horizontal != 0f && isGounded)
-            // {
-            //     _animator.SetBool("Running", true);
-            // }
-            // else
-            // {
-            //     _animator.SetBool("Running", false);
-            // }
             hori = horizontal;
             UpdatePlayerMovement(horizontal, isJumpPressed);
         }
 
         private void UpdatePlayerMovement(float horizontal, bool isJumpPressed)
         {
-            if (isJumpPressed && currentJumpAvailable >= 1)
+            if (isJumpPressed)
             {
                 currentState.ChangeState(_airState);
             }
