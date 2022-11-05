@@ -21,6 +21,9 @@ public class AirState : BaseState
         if (SetActor(obj) == false) return;
         base.Enter(_actor);
         isOnAir = true;
+        _actor.currentJumpAvailable -= 1;
+        if (_actor.currentJumpAvailable < 0)
+            _actor.currentJumpAvailable = 0;
         // if(_actor.controllerState == ControllerState.Grounded || _actor.controllerState == ControllerState.Jumping)
         //     Jump();
         // else if(_actor.controllerState == ControllerState.Falling || _actor.controllerState == ControllerState.Rising)

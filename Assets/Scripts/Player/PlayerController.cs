@@ -12,9 +12,9 @@ namespace Player
         private PlayerInputMovement _playerInputMovement;
         private SidescrollerController _sidescrollerController;
 
-        private MoveState _moveState = new MoveState();
-        private IdleState _idleState = new IdleState();
-        private AirState _airState = new AirState();
+        protected MoveState _moveState = new MoveState();
+        protected IdleState _idleState = new IdleState();
+        protected AirState _airState = new AirState();
         public float hori;
         private void Awake()
         {
@@ -64,7 +64,7 @@ namespace Player
 
         private void UpdatePlayerMovement(float horizontal, bool isJumpPressed)
         {
-            if (isJumpPressed)
+            if (isJumpPressed && currentJumpAvailable >= 1)
             {
                 currentState.ChangeState(_airState);
             }
@@ -77,6 +77,10 @@ namespace Player
                 else
                 {
                     currentState.ChangeState(_moveState);
+                    // if (isJumpPressed)
+                    // {
+                    //     currentState.ChangeState(_airState);
+                    // }
                 }
             }
             else

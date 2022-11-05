@@ -29,6 +29,7 @@ namespace StateMachine.PlayerState
         {
             isIdle = true;
             RunAnimation(IDLE, isIdle);
+            _actor.currentJumpAvailable = 1;
         }
 
         private void StopIdle()
