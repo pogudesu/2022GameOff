@@ -14,5 +14,6 @@ namespace StateMachine.Data
         [HideInInspector]
         public GameObject actorGameObject;
         public ControllerState controllerState;
+        public int currentJumpAvailable = 1;
     }
 }

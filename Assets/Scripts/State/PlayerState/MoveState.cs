@@ -1,3 +1,5 @@
+using EventHandler;
+
 namespace StateMachine.PlayerState
 {
     public class MoveState : BaseState
@@ -9,16 +11,26 @@ namespace StateMachine.PlayerState
         public override void Enter(object obj)
         {
             if (SetActor(obj) == false) return;
-            isRunning = true;
-            RunAnimation(RUNNING, isRunning);
+
+            Move();
         }
 
         public override void Update(object obj)
         {
             if (_actor == null) return;
             if (IsCurrentStateThis() == false) return;
+            if (_actor.controllerState == ControllerState.Jumping)
+            {
+                
+            }
+                
         }
     
+        private void Move()
+        {
+            isRunning = true;
+            RunAnimation(RUNNING, isRunning);
+        }
         private void StopMove()
         {
             isRunning = false;

@@ -1,3 +1,5 @@
+using EventHandler;
+
 namespace StateMachine.PlayerState
 {
     public class IdleState : BaseState
