@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30906090}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000017881393, y: -2.29, z: -12.25}
+  m_LocalRotation: {x: -0.0000000011524507, y: -0, z: -7.2759437e-12, w: 1}
+  m_LocalPosition: {x: 0, y: -2.29, z: -12.250001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -140,11 +140,11 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_CameraDistance: 12.25
   m_DeadZoneWidth: 0.159
-  m_DeadZoneHeight: 0.381
+  m_DeadZoneHeight: 0.302
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneHeight: 1.034
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -363,7 +363,6 @@ GameObject:
   - component: {fileID: 1234213951}
   - component: {fileID: 920419221067817618}
   - component: {fileID: 3881615416337653975}
-  - component: {fileID: 1075055692967040391}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -507,8 +506,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   actorGameObject: {fileID: 0}
   controllerState: 0
-  currentJumpAvailable: 0
-  hori: 0
+  currentJumpAvailable: 1
 --- !u!114 &920419221067817618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,19 +539,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1075055692967040391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2153541548347091150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cacc773355846498390baab94d2a69c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpDurationReset: 1
 --- !u!1 &2153955376356326376
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +564,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2153955376356326376}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -587,7 +572,7 @@ Transform:
   - {fileID: 5721549694562742482}
   m_Father: {fileID: 2155311652958034094}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2053524291119079362
 MonoBehaviour:
   m_ObjectHideFlags: 0
