@@ -22,6 +22,9 @@ namespace Player
         private bool IsAirState => _airState.OnAir;
         private bool IsMoveState => _moveState.GetIsRunning;
         private bool IsIdleState => _idleState.GetIsIdle;
+        private bool IsPistolState => _pistolState.IsAttackState;
+        private bool IsSniperState => _sniperState.IsAttackState;
+        private bool IsDualPistolState => _dualPistolState.IsAttackState;
         private bool IsCurrentStateNotNull => currentState != null;
         private bool IsNotGrounded => controllerState != ControllerState.Grounded;
 
@@ -68,7 +71,7 @@ namespace Player
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
             bool IsSniperAttackPressed = Input.GetMouseButton(1);
             bool IsDualPistolPressed = Input.GetKeyDown(KeyCode.Q);
-            float horizontal = Input.GetAxis("Horizontal");
+            float horizontalMovement = Input.GetAxis("Horizontal");
             bool isJumpPressed = Input.GetKey(KeyCode.Space);
 
             if (IsPistolAttackPressed)
@@ -83,36 +86,34 @@ namespace Player
             }
             else
             {
-                UpdatePlayerMovement(horizontal, isJumpPressed);
+                UpdatePlayerMovement(horizontalMovement, isJumpPressed);
             }
         }
-
+        
+        private void StartAttackWithPistol()
+        {
+            if (IsStateNotAvailableToShoot() == false) return;
+            ChangeState(_pistolState);
+        }
+        private void StartAttackWithSniper()
+        {
+            if (IsStateNotAvailableToShoot() == false) return;
+            ChangeState(_sniperState);
+        }
+        
         private void StartAttackWithDualPistol()
         {
-            if (IsStateNotAvailableToShoot()) return;
-            ChangeState(_pistolState);
+            if (IsStateNotAvailableToShoot() == false) return;
+            ChangeState(_dualPistolState);
         }
 
         private bool IsStateNotAvailableToShoot()
         {
-            return IsIdleState == false || IsMoveState == false;
-        }
-
-        private void StartAttackWithSniper()
-        {
-            if (IsStateNotAvailableToShoot()) return;
-            ChangeState(_sniperState);
-        }
-
-        private void StartAttackWithPistol()
-        {
-            if (IsStateNotAvailableToShoot()) return;
-            ChangeState(_dualPistolState);
+            return IsIdleState || IsMoveState ;
         }
 
         private void UpdatePlayerMovement(float horizontal, bool isJumpPressed)
         {
-            EnterJumpState(isJumpPressed);
             bool isMoving = horizontal != 0;
             if (isMoving)
             {
@@ -122,7 +123,18 @@ namespace Player
             {
                 InitializedIdleState();
             }
+            if (IsCurrentlyInAttackState())
+            {
+                StopMoving();
+                return;
+            }
+            EnterJumpState(isJumpPressed);
             _playerInputMovement.PlayerMove(horizontal, 0, isJumpPressed);
+        }
+
+        private void StopMoving()
+        {
+            _playerInputMovement.PlayerMove(0, 0, false);
         }
 
         private void InitializedIdleState()
@@ -163,5 +175,49 @@ namespace Player
         {
             currentState.ChangeState(state);
         }
+        
+        private bool IsCurrentlyInAttackState()
+        {
+            return IsPistolState || IsSniperState || IsDualPistolState;
+        }
+
+
+        #region ############################ Animation Event ###################################
+
+        public void AttackAnimationEnd()
+        {
+            Debug.Log("Attack End");
+            currentState.Exit(this);
+            currentState = _idleState;
+            currentState.Enter(this);
+        }
+
+        public void FireShot()
+        {
+            Debug.Log("Attack");
+            // Attack handler job to do logic
+        }
+        
+        
+        //          This Animation is for Dual Pistol           //
+        public void BothGunFire()
+        {
+            Debug.Log("BothGunFire");
+            // Attack handler job to do logic
+        }
+        
+        public void GunOneFire()
+        {
+            Debug.Log("GunOneFire");
+            // Attack handler job to do logic
+        }
+        
+        public void GunTwoFire()
+        {
+            Debug.Log("GunTwoFire");
+            // Attack handler job to do logic
+        }
+
+        #endregion
     }
 }

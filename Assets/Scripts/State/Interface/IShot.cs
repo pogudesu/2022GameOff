@@ -7,5 +7,7 @@ namespace State.Interface
         public void Shot();
         public void Interupt();
         public void SetGun(IGunnable gun);
+
+        public bool IsCurrentlyInAttackState();
     }
 }

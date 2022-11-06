@@ -1,5 +1,6 @@
 using PlayerGun;
 using State.Interface;
+using UnityEngine;
 
 namespace StateMachine.PlayerState
 {
@@ -60,6 +61,11 @@ namespace StateMachine.PlayerState
         {
             if (this.gun == null)
                 this.gun = newGun;
+        }
+
+        public bool IsCurrentlyInAttackState()
+        {
+            return IsAttackState;
         }
     }
 }
