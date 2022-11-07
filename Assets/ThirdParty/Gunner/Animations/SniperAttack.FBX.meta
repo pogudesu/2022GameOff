@@ -649,7 +649,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.45302013
+      - time: 0.43101522
         functionName: FireShot
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -672,6 +672,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.91055286
         functionName: AttackAnimationEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.27181208
+        functionName: SniperCharge
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

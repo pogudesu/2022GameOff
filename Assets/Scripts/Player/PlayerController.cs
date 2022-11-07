@@ -5,6 +5,7 @@ using State.Interface;
 using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
+using Attack;
 
 namespace Player
 {
@@ -13,6 +14,7 @@ namespace Player
         private PlayerInputMovement _playerInputMovement;
         private SidescrollerController _sidescrollerController;
         private EquipingGunController _gunGameObjectHandler;
+        private AttackHandler _attackHandler;
 
         private MoveState _moveState = new MoveState();
         private IdleState _idleState = new IdleState();
@@ -40,6 +42,7 @@ namespace Player
             _sidescrollerController = GetComponent<SidescrollerController>();
             _sidescrollerController.SetInput(_playerInputMovement);
             _gunGameObjectHandler = GetComponent<EquipingGunController>();
+            _attackHandler = GetComponent<AttackHandler>();
             
             _pistolState.SetGun(pistolGun);
             _sniperState.SetGun(sniperGun);
@@ -205,27 +208,31 @@ namespace Player
         public void FireShot()
         {
             Debug.Log("Attack");
-            // Attack handler job to do logic
+            if (IsSniperState)
+            {
+                _attackHandler.ShotSniper();
+            }else if (IsPistolState || IsDualPistolState)
+            {
+                _attackHandler.ShotRevolver();
+            }
         }
-        
-        
         //          This Animation is for Dual Pistol           //
         public void BothGunFire()
         {
             Debug.Log("BothGunFire");
-            // Attack handler job to do logic
+            _attackHandler.ShotPistol();
+            _attackHandler.ShotRevolver();
         }
         
         public void GunOneFire()
         {
             Debug.Log("GunOneFire");
-            // Attack handler job to do logic
+            _attackHandler.ShotPistol();
         }
         
-        public void GunTwoFire()
+        public void SniperCharge()
         {
-            Debug.Log("GunTwoFire");
-            // Attack handler job to do logic
+            _attackHandler.SniperChargeInit();
         }
 
         public void RevolverEquip()

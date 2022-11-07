@@ -1,12 +1,7 @@
 {
-    "name": "Player",
+    "name": "Attack",
     "rootNamespace": "",
-    "references": [
-        "GUID:d65b1bcaa3f7a0f4baf83377ef809905",
-        "GUID:dc47b69fea86cd7489289dc4c2569f23",
-        "GUID:f5ccdc3bf16eeb940b2ab4db7a244f11",
-        "GUID:3dcabde662ec3264897924c324952982"
-    ],
+    "references": ["GUID:f5ccdc3bf16eeb940b2ab4db7a244f11"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

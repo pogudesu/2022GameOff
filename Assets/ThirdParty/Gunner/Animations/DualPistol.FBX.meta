@@ -650,14 +650,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.32214764
+      - time: 0.3099227
         functionName: GunOneFire
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35402685
+      - time: 0.3418019
         functionName: GunOneFire
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -672,7 +672,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.5402685
-        functionName: GunTwoFire
+        functionName: FireShot
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
