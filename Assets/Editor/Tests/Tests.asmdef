@@ -9,7 +9,8 @@
         "HealthSystem",
         "Player",
         "CharacterMovement",
-        "StateMachine"
+        "StateMachine",
+        "Gun"
     ],
     "includePlatforms": [
         "Editor"

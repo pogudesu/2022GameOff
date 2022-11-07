@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using CMF;
+
 using NUnit.Framework;
+using PlayerGun;
 using State.Interface;
 using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
-using UnityEngine.TestTools;
-using UnityEngine.UI;
+
 
 public class StateMachineTest
 {
@@ -16,7 +13,9 @@ public class StateMachineTest
     public MoveState moveState;
     public IdleState idleState;
     public AirState airState;
+    public AttackState attackState;
     public ActorData actor;
+    public Gun gun;
     
     [SetUp]
     public void StateMachineSetUp()
@@ -30,12 +29,21 @@ public class StateMachineTest
         moveState = new MoveState();
         idleState = new IdleState();
         airState = new AirState();
+        attackState = new AttackState();
         actor.currentState = idleState;
         actor.currentState.Enter(actor);
+
+        gun = ScriptableObject.CreateInstance<Gun>();
+    }
+
+    [TearDown]
+    public void StatMachinTearDown()
+    {
+        Object.DestroyImmediate(gun);
     }
 
     [Test]
-    public void TestIdleStateToRunning()
+    public void Test_Idle_State_To_Running()
     {
         if (actor.currentState != null)
         {
@@ -47,7 +55,7 @@ public class StateMachineTest
     }
 
     [Test]
-    public void TestIdleStateToFalseWhileRunning()
+    public void Test_Idle_State_To_False_While_Running()
     {
         actor.currentState.ChangeState(idleState);
         actor.currentState.ChangeState(moveState);
@@ -55,7 +63,7 @@ public class StateMachineTest
     }
 
     [Test]
-    public void TestRunningToIdle()
+    public void Test_Running_To_Idle()
     {
         actor.currentState.ChangeState(idleState);
         actor.currentState.ChangeState(moveState);
@@ -64,14 +72,14 @@ public class StateMachineTest
     }
 
     [Test]
-    public void TestAirJump()
+    public void Test_Air_Jump()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Jumping;
         Assert.AreEqual(true, airState.IsJumping);
     }
     [Test]
-    public void TestAirFalling()
+    public void Test_Air_Falling()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Falling;
@@ -79,7 +87,7 @@ public class StateMachineTest
     }
     
     [Test]
-    public void TestAirRising()
+    public void Test_Air_Rising()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Rising;
@@ -87,7 +95,7 @@ public class StateMachineTest
     }
     
     [Test]
-    public void TestAirGrounded()
+    public void Test_Air_Grounded()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Grounded;
@@ -95,7 +103,7 @@ public class StateMachineTest
     }
     
     [Test]
-    public void TestAirLandingWithHorizontalMovementPressed()
+    public void Test_Air_Landing_With_Horizontal_Movement_Pressed()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Falling;
@@ -104,8 +112,48 @@ public class StateMachineTest
         actor.controllerState = ControllerState.Grounded;
         actor.currentState.Update(actor);
         Assert.AreEqual(true, moveState.GetIsRunning);
+        
+    }
+    
+    #region ##################################### Attack State ###################################
+
+    [Test]
+    public void Test_Gun_Shot()
+    {
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        Assert.AreEqual(true, attackState.IsAttackState);
     }
 
+    [Test]
+    public void Test_Gun_Shot_Then_Change_Move_State_Immediately()
+    {
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        actor.currentState.ChangeState(moveState);
+        Assert.AreEqual(true, attackState.IsAttackState);
+    }
+
+    [Test]
+    public void Test_Gun_With_EmptyBullets()
+    {
+        actor.currentState.ChangeState(moveState);
+        gun.currentNumBullet = 0;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        Assert.AreEqual(true, moveState.GetIsRunning);
+    }
+
+    #endregion
+
+
+    public class AttackHandler
+    {
+        
+    }
+    
 
 }
 

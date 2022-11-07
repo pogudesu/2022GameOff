@@ -68,6 +68,7 @@ public class AirState : BaseState
     public override void Exit(object obj)
     {
         isOnAir = false;
+        base.Exit(obj);
     }
     
     private void Jump()
