@@ -12,6 +12,7 @@ namespace Player
     {
         private PlayerInputMovement _playerInputMovement;
         private SidescrollerController _sidescrollerController;
+        private EquipingGunController _gunGameObjectHandler;
 
         private MoveState _moveState = new MoveState();
         private IdleState _idleState = new IdleState();
@@ -31,12 +32,14 @@ namespace Player
         public Gun pistolGun;
         public Gun sniperGun;
         public Gun dualPistolGun;
+        
         private void Awake()
         {
             _playerInputMovement = GetComponent<PlayerInputMovement>();
             _animator = GetComponent<Animator>();
             _sidescrollerController = GetComponent<SidescrollerController>();
             _sidescrollerController.SetInput(_playerInputMovement);
+            _gunGameObjectHandler = GetComponent<EquipingGunController>();
             
             _pistolState.SetGun(pistolGun);
             _sniperState.SetGun(sniperGun);
@@ -70,18 +73,21 @@ namespace Player
         {
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
             bool IsSniperAttackPressed = Input.GetMouseButton(1);
-            bool IsDualPistolPressed = Input.GetKeyDown(KeyCode.Q);
+            bool IsDualPistolPressed = Input.GetKey(KeyCode.Q);
             float horizontalMovement = Input.GetAxis("Horizontal");
             bool isJumpPressed = Input.GetKey(KeyCode.Space);
 
             if (IsPistolAttackPressed)
             {
+                StopMoving();
                 StartAttackWithPistol();
             }else if (IsSniperAttackPressed)
             {
+                StopMoving();
                 StartAttackWithSniper();
             }else if (IsDualPistolPressed)
             {
+                StopMoving();
                 StartAttackWithDualPistol();
             }
             else
@@ -93,17 +99,20 @@ namespace Player
         private void StartAttackWithPistol()
         {
             if (IsStateNotAvailableToShoot() == false) return;
+            if (IsCurrentlyInAttackState()) return;
             ChangeState(_pistolState);
         }
         private void StartAttackWithSniper()
         {
             if (IsStateNotAvailableToShoot() == false) return;
+            if (IsCurrentlyInAttackState()) return;
             ChangeState(_sniperState);
         }
         
         private void StartAttackWithDualPistol()
         {
             if (IsStateNotAvailableToShoot() == false) return;
+            if (IsCurrentlyInAttackState()) return;
             ChangeState(_dualPistolState);
         }
 
@@ -187,6 +196,7 @@ namespace Player
         public void AttackAnimationEnd()
         {
             Debug.Log("Attack End");
+            if (IsCurrentlyInAttackState() == false) return;
             currentState.Exit(this);
             currentState = _idleState;
             currentState.Enter(this);
@@ -218,6 +228,37 @@ namespace Player
             // Attack handler job to do logic
         }
 
+        public void RevolverEquip()
+        {
+            _gunGameObjectHandler.EquipRevolver();
+        }
+
+        public void RevolverUnequip()
+        {
+            _gunGameObjectHandler.UnEquipRevolver();
+        }
+
+        public void PistolEquip()
+        {
+            _gunGameObjectHandler.EquipPistol();
+        }
+
+        public void PistolUnequip()
+        {
+            _gunGameObjectHandler.UnEquipPistol();
+        }
+
+        public void SniperEquip()
+        {
+            _gunGameObjectHandler.EquipSniper();
+        }
+
+        public void SniperUnequip()
+        {
+            _gunGameObjectHandler.UnEquipSniper();
+        }
+
         #endregion
+        
     }
 }
