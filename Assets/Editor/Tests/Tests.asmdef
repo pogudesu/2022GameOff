@@ -10,7 +10,8 @@
         "Player",
         "CharacterMovement",
         "StateMachine",
-        "Gun"
+        "Gun",
+        "Enemy"
     ],
     "includePlatforms": [
         "Editor"

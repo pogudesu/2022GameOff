@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using CMF;
 using PlayerGun;
 using State.Interface;
@@ -6,12 +7,16 @@ using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
 using Attack;
+using EventHandler;
+using HealthSystem;
+using NaughtyAttributes;
+using Obvious.Soap;
 
 namespace Player
 {
     public class PlayerController : ActorData
     {
-        private PlayerInputMovement _playerInputMovement;
+        private ActorInputMovement _actorInputMovement;
         private SidescrollerController _sidescrollerController;
         private EquipingGunController _gunGameObjectHandler;
         private AttackHandler _attackHandler;
@@ -22,6 +27,8 @@ namespace Player
         private AttackState _pistolState = new AttackState();
         private AttackState _sniperState = new AttackState();
         private AttackState _dualPistolState = new AttackState();
+        private DieState _dieState = new DieState();
+        private HitState _hitState = new HitState();
         private bool IsAirState => _airState.OnAir;
         private bool IsMoveState => _moveState.GetIsRunning;
         private bool IsIdleState => _idleState.GetIsIdle;
@@ -30,6 +37,10 @@ namespace Player
         private bool IsDualPistolState => _dualPistolState.IsAttackState;
         private bool IsCurrentStateNotNull => currentState != null;
         private bool IsNotGrounded => controllerState != ControllerState.Grounded;
+        private bool IsHitState => _hitState.IsOnHitState;
+        public float durationOfInvincibility = 2f;
+        // public LayerMask playerLayerNormal;
+        // public LayerMask playerLayerHit;
 
         public Gun pistolGun;
         public Gun sniperGun;
@@ -37,16 +48,19 @@ namespace Player
         
         private void Awake()
         {
-            _playerInputMovement = GetComponent<PlayerInputMovement>();
+            _actorInputMovement = GetComponent<ActorInputMovement>();
             _animator = GetComponent<Animator>();
             _sidescrollerController = GetComponent<SidescrollerController>();
-            _sidescrollerController.SetInput(_playerInputMovement);
+            _sidescrollerController.SetInput(_actorInputMovement);
             _gunGameObjectHandler = GetComponent<EquipingGunController>();
             _attackHandler = GetComponent<AttackHandler>();
             
             _pistolState.SetGun(pistolGun);
             _sniperState.SetGun(sniperGun);
             _dualPistolState.SetGun(dualPistolGun);
+
+            IndividualHealth health = GetComponent<PlayerReceivedDamage>().health;
+            health.healthPoint.OnValueChanged += OnHealthChanged;
         }
 
         private void Start()
@@ -58,6 +72,7 @@ namespace Player
 
         private void Update()
         {
+            if (IsAllowedToUseController() == false) return;
             if(IsCurrentStateNotNull)
                 currentState.Update(this);
             UpdateControlState();
@@ -74,6 +89,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (IsAllowedToUseController() == false) return;
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
             bool IsSniperAttackPressed = Input.GetMouseButton(1);
             bool IsDualPistolPressed = Input.GetKey(KeyCode.Q);
@@ -141,12 +157,12 @@ namespace Player
                 return;
             }
             EnterJumpState(isJumpPressed);
-            _playerInputMovement.PlayerMove(horizontal, 0, isJumpPressed);
+            _actorInputMovement.ActorMove(horizontal, 0, isJumpPressed);
         }
 
         private void StopMoving()
         {
-            _playerInputMovement.PlayerMove(0, 0, false);
+            _actorInputMovement.ActorMove(0, 0, false);
         }
 
         private void InitializedIdleState()
@@ -191,6 +207,11 @@ namespace Player
         private bool IsCurrentlyInAttackState()
         {
             return IsPistolState || IsSniperState || IsDualPistolState;
+        }
+
+        private bool IsAllowedToUseController()
+        {
+            return isActorDied == false && IsHitState == false;
         }
 
 
@@ -265,7 +286,84 @@ namespace Player
             _gunGameObjectHandler.UnEquipSniper();
         }
 
+        public void OnHitAnimationEnd()
+        {
+            Debug.Log("OnHitAnimationEnd");
+            currentState.Exit(this);
+            currentState = _idleState;
+            currentState.Enter(this);
+        }
+
         #endregion
+
+        #region Player Died
+
         
+        public void OnHealthChanged(int health)
+        {
+            if (health > 0) Hit();
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        [Button]
+        public void Hit()
+        {
+            currentState.ChangeState(_hitState);
+            if (_hitState.IsOnAirStateHit == false)
+            {
+                StopMoving();
+            }
+            _hitState.IsOnAirStateHit = false;
+            RevertWeaponToDefaultPosition();
+            StartCoroutine(ProcessInvincible());
+        }
+
+        IEnumerator ProcessInvincible()
+        {
+            int player = LayerMask.NameToLayer("Player");
+            int playerHit = LayerMask.NameToLayer("PlayerHit");
+            SetLayerAllChildrens(gameObject, playerHit);
+            
+            yield return new WaitForSeconds(durationOfInvincibility);
+            SetLayerAllChildrens(gameObject, player);
+        }
+
+        private void SetLayerAllChildrens(GameObject _go, int _layer)
+        {
+            _go.layer = _layer;
+            foreach (Transform child in _go.transform)
+            {
+                child.gameObject.layer = _layer;
+ 
+                Transform _HasChildren = child.GetComponentInChildren<Transform>();
+                if (_HasChildren != null)
+                    SetLayerAllChildrens(child.gameObject, _layer);
+            }
+        }
+
+        private void RevertWeaponToDefaultPosition()
+        {
+            RevolverUnequip();
+            SniperUnequip();
+            PistolEquip();
+        }
+
+        private void Die()
+        {
+            ChangeState(_dieState);
+            Debug.Log("PlayerDied");
+        }
+
+        private IEnumerator WaitForSecondsUntilEndScreen()
+        {
+            yield return new WaitForSeconds(3f);
+            EventManager.OnPlayerDied.Invoke();
+            Debug.Log("OnPlayerDied");
+        }
+
+        #endregion
+
     }
 }

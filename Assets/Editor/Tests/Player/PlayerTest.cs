@@ -7,12 +7,12 @@ using UnityEngine.TestTools;
 
 public class PlayerTest
 {
-    private PlayerInputMovement _playerInputMovement;
+    private ActorInputMovement _actorInputMovement;
 
     [SetUp]
     public void SetUpPlayer()
     {
-        _playerInputMovement = new PlayerInputMovement();
+        _actorInputMovement = new ActorInputMovement();
     }
     [Test]
     [TestCase(1, 0, 1)]
@@ -20,8 +20,8 @@ public class PlayerTest
     [TestCase(0, 3, 0)]
     public void PlayerMovementHorizontalTest(float horizontal, float vertical, float expected)
     {
-        _playerInputMovement.PlayerMove(horizontal,vertical,false);
-        Assert.AreEqual(expected, _playerInputMovement.GetHorizontalMovementInput());
+        _actorInputMovement.ActorMove(horizontal,vertical,false);
+        Assert.AreEqual(expected, _actorInputMovement.GetHorizontalMovementInput());
     }
     
     [Test]
@@ -31,15 +31,15 @@ public class PlayerTest
     [TestCase(0, 3, 0)]
     public void PlayerMovementVerticalTest(float horizontal, float vertical, float expected)
     {
-        _playerInputMovement.PlayerMove(horizontal,vertical,false);
-        Assert.AreEqual(expected, _playerInputMovement.GetVerticalMovementInput());
+        _actorInputMovement.ActorMove(horizontal,vertical,false);
+        Assert.AreEqual(expected, _actorInputMovement.GetVerticalMovementInput());
     }
     [Test]
     [TestCase(true, true)]
     [TestCase(false, false)]
     public void PlayerMovementJumpTest(bool isJumping, bool expected)
     {
-        _playerInputMovement.PlayerMove(0,0,isJumping);
-        Assert.That(expected == _playerInputMovement.IsJumpKeyPressed(), " Is Jump pressed");
+        _actorInputMovement.ActorMove(0,0,isJumping);
+        Assert.That(expected == _actorInputMovement.IsJumpKeyPressed(), " Is Jump pressed");
     }
 }

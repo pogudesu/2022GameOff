@@ -1,0 +1,22 @@
+{
+    "name": "Enemy",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a72ccf5c513705341957df7fcd12d162",
+        "GUID:ee6baafdecd94804a8714654c4bd097f",
+        "GUID:d077ff18d774b9d479c2ce4c35deb3a1",
+        "GUID:dc47b69fea86cd7489289dc4c2569f23",
+        "GUID:f5ccdc3bf16eeb940b2ab4db7a244f11",
+        "GUID:de36d776bb5a6ca40a991be153d64495",
+        "GUID:3dcabde662ec3264897924c324952982"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -8,6 +8,7 @@ namespace PlayerGun
         public int currentNumBullet;
         public string animationName;
         public GunType type;
+        public int attackPower;
         public int GetBullet()
         {
             return currentNumBullet;

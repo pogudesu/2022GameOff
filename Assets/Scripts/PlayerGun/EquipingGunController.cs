@@ -16,12 +16,12 @@ namespace PlayerGun
 
         private void Start()
         {
-            if(!revolverEquipedGameObject) Debug.LogError("Revolver Equip is missing!");
-            if(!revolverUnequipedGameObject) Debug.LogError("Revolver Unequip is missing!");
-            if(!pistolEquipedGameObject) Debug.LogError("Pistol Equip is missing!");
-            if(!pistolUnequipedGameObject) Debug.LogError("Pistol Unequip is missing!");
-            if(!sniperEquipedGameObject) Debug.LogError("Sniper Equip is missing!");
-            if(!sniperUnEquipedGameObject) Debug.LogError("Sniper Unequip is missing!");
+            if(!revolverEquipedGameObject) Debug.LogWarning("Revolver Equip is missing!");
+            if(!revolverUnequipedGameObject) Debug.LogWarning("Revolver Unequip is missing!");
+            if(!pistolEquipedGameObject) Debug.LogWarning("Pistol Equip is missing!");
+            if(!pistolUnequipedGameObject) Debug.LogWarning("Pistol Unequip is missing!");
+            if(!sniperEquipedGameObject) Debug.LogWarning("Sniper Equip is missing!");
+            if(!sniperUnEquipedGameObject) Debug.LogWarning("Sniper Unequip is missing!");
         }
 
         public void EquipRevolver()
