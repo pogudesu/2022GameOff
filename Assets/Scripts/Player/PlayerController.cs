@@ -11,7 +11,7 @@ namespace Player
 {
     public class PlayerController : ActorData
     {
-        private PlayerInputMovement _playerInputMovement;
+        private ActorInputMovement _actorInputMovement;
         private SidescrollerController _sidescrollerController;
         private EquipingGunController _gunGameObjectHandler;
         private AttackHandler _attackHandler;
@@ -37,10 +37,10 @@ namespace Player
         
         private void Awake()
         {
-            _playerInputMovement = GetComponent<PlayerInputMovement>();
+            _actorInputMovement = GetComponent<ActorInputMovement>();
             _animator = GetComponent<Animator>();
             _sidescrollerController = GetComponent<SidescrollerController>();
-            _sidescrollerController.SetInput(_playerInputMovement);
+            _sidescrollerController.SetInput(_actorInputMovement);
             _gunGameObjectHandler = GetComponent<EquipingGunController>();
             _attackHandler = GetComponent<AttackHandler>();
             
@@ -141,12 +141,12 @@ namespace Player
                 return;
             }
             EnterJumpState(isJumpPressed);
-            _playerInputMovement.PlayerMove(horizontal, 0, isJumpPressed);
+            _actorInputMovement.ActorMove(horizontal, 0, isJumpPressed);
         }
 
         private void StopMoving()
         {
-            _playerInputMovement.PlayerMove(0, 0, false);
+            _actorInputMovement.ActorMove(0, 0, false);
         }
 
         private void InitializedIdleState()

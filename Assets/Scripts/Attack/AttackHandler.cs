@@ -1,4 +1,5 @@
 using System;
+using Damageable;
 using PlayerGun;
 using UnityEngine;
 
@@ -64,7 +65,8 @@ namespace Attack
                 Debug.Log("Did Hit");
 
                 bullet.transform.position = hit.point;
-                // hit.transform.gameObject
+                IDamageable enemyHit = hit.transform.gameObject.GetComponent<IDamageable>();
+                enemyHit.TakeDamage(15, gunType);
             }
             else
             {

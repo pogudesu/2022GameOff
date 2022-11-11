@@ -1,7 +1,10 @@
 {
     "name": "Attack",
     "rootNamespace": "",
-    "references": ["GUID:f5ccdc3bf16eeb940b2ab4db7a244f11"],
+    "references": [
+        "GUID:f5ccdc3bf16eeb940b2ab4db7a244f11",
+        "GUID:c10165391850f0f46874190efd6d5606"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
