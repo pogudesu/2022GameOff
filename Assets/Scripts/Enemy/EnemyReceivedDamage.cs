@@ -1,4 +1,5 @@
 
+using System.Collections;
 using HealthSystem;
 using Obvious.Soap;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Enemy
         [Range(0,1)]
         public float revolverDamageReduction;
         private bool isShieldBroken = false;
+        private Coroutine hitCoroutine = null;
         private void Start()
         {
             health.Initialize();
@@ -35,6 +37,41 @@ namespace Enemy
             int newDamageAfterArmorReduction = (int)newDamageAfterAttackTypeReduction - armor.Value;
             if (newDamageAfterArmorReduction <= 0) return;
             health.TakeDamage(newDamageAfterArmorReduction);
+            Hit();
+        }
+
+        private void Hit()
+        {
+            if (hitCoroutine != null)
+            {
+                StopCoroutine(hitCoroutine);
+            }
+
+            hitCoroutine = StartCoroutine(ProcessHighlights());
+        }
+        
+        IEnumerator ProcessHighlights()
+        {
+            int enemy = LayerMask.NameToLayer("Enemy");
+            int enemyHit = LayerMask.NameToLayer("EnemyHit");
+            SetLayerAllChildrens(gameObject, enemyHit);
+            
+            yield return new WaitForSeconds(0.1f);
+            SetLayerAllChildrens(gameObject, enemy);
+            hitCoroutine = null;
+        }
+        
+        private void SetLayerAllChildrens(GameObject _go, int _layer)
+        {
+            _go.layer = _layer;
+            foreach (Transform child in _go.transform)
+            {
+                child.gameObject.layer = _layer;
+ 
+                Transform _HasChildren = child.GetComponentInChildren<Transform>();
+                if (_HasChildren != null)
+                    SetLayerAllChildrens(child.gameObject, _layer);
+            }
         }
 
         private bool CalculateShieldReduction(float newDamageAfterAttackTypeReduction)

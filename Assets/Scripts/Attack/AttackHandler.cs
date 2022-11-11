@@ -65,6 +65,10 @@ namespace Attack
                 
                 // Debug.DrawRay(muzzlePosition, directionShot * hit.distance, Color.yellow, 3f);
                 Debug.Log("Did Hit");
+                if (hit.transform.gameObject.CompareTag("Player"))
+                {
+                    hit.rigidbody.AddForceAtPosition(directionShot * 2000f, hit.point);
+                }
 
                 bullet.transform.position = hit.point;
                 if (impactHit != null)

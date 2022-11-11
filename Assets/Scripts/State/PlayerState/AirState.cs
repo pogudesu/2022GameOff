@@ -1,3 +1,5 @@
+using State.Interface;
+
 namespace StateMachine.PlayerState
 {
 public class AirState : BaseState
@@ -52,6 +54,21 @@ public class AirState : BaseState
         }else if (IsGrounded)
         {
             Landing();
+        }
+    }
+
+    public override void ChangeState(IStateable state)
+    {
+        if (state is HitState)
+        {
+            RunAnimation(JUMP, false);
+            RunAnimation(FALLING, false);
+            RunAnimation(LANDING, false);
+            base.ChangeState(state);
+        }
+        else
+        {
+            base.ChangeState(state);
         }
     }
 

@@ -45,7 +45,7 @@ namespace StateMachine.PlayerState
         public override void ChangeState(IStateable state)
         {
 
-            if (state is DieState)
+            if (state is DieState || state is HitState)
             {
                 base.ChangeState(state);
             }

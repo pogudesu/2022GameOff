@@ -197,15 +197,48 @@ public class StateMachineTest
     }
 
     #endregion
-
     
+    #region Hit State
+
+    [Test]
+    public void Test_Hit_State()
+    {
+        HitState hitState = new HitState();
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnHitState);
+    }
+
+    [Test]
+    public void Test_Hit_State_From_Attack_State()
+    {
+        HitState hitState = new HitState();
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnHitState);
+    }
+
+    [Test]
+    public void Test_Hit_State_From_Moving()
+    {
+        HitState hitState = new HitState();
+        actor.currentState.ChangeState(moveState);
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnHitState);
+    }
     
+    [Test]
+    public void Test_Hit_State_From_Jump()
+    {
+        HitState hitState = new HitState();
+        actor.currentState.ChangeState(airState);
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnAirStateHit);
+    }
     
-
-
-
+    #endregion
     
-
 }
 
 

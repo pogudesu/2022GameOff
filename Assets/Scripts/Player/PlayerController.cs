@@ -9,6 +9,7 @@ using UnityEngine;
 using Attack;
 using EventHandler;
 using HealthSystem;
+using NaughtyAttributes;
 using Obvious.Soap;
 
 namespace Player
@@ -27,6 +28,7 @@ namespace Player
         private AttackState _sniperState = new AttackState();
         private AttackState _dualPistolState = new AttackState();
         private DieState _dieState = new DieState();
+        private HitState _hitState = new HitState();
         private bool IsAirState => _airState.OnAir;
         private bool IsMoveState => _moveState.GetIsRunning;
         private bool IsIdleState => _idleState.GetIsIdle;
@@ -35,6 +37,10 @@ namespace Player
         private bool IsDualPistolState => _dualPistolState.IsAttackState;
         private bool IsCurrentStateNotNull => currentState != null;
         private bool IsNotGrounded => controllerState != ControllerState.Grounded;
+        private bool IsHitState => _hitState.IsOnHitState;
+        public float durationOfInvincibility = 2f;
+        // public LayerMask playerLayerNormal;
+        // public LayerMask playerLayerHit;
 
         public Gun pistolGun;
         public Gun sniperGun;
@@ -205,7 +211,7 @@ namespace Player
 
         private bool IsAllowedToUseController()
         {
-            return isActorDied == false;
+            return isActorDied == false && IsHitState == false;
         }
 
 
@@ -280,16 +286,68 @@ namespace Player
             _gunGameObjectHandler.UnEquipSniper();
         }
 
+        public void OnHitAnimationEnd()
+        {
+            Debug.Log("OnHitAnimationEnd");
+            currentState.Exit(this);
+            currentState = _idleState;
+            currentState.Enter(this);
+        }
+
         #endregion
 
         #region Player Died
 
+        
         public void OnHealthChanged(int health)
         {
+            if (health > 0) Hit();
             if (health <= 0)
             {
                 Die();
             }
+        }
+        [Button]
+        public void Hit()
+        {
+            currentState.ChangeState(_hitState);
+            if (_hitState.IsOnAirStateHit == false)
+            {
+                StopMoving();
+            }
+            _hitState.IsOnAirStateHit = false;
+            RevertWeaponToDefaultPosition();
+            StartCoroutine(ProcessInvincible());
+        }
+
+        IEnumerator ProcessInvincible()
+        {
+            int player = LayerMask.NameToLayer("Player");
+            int playerHit = LayerMask.NameToLayer("PlayerHit");
+            SetLayerAllChildrens(gameObject, playerHit);
+            
+            yield return new WaitForSeconds(durationOfInvincibility);
+            SetLayerAllChildrens(gameObject, player);
+        }
+
+        private void SetLayerAllChildrens(GameObject _go, int _layer)
+        {
+            _go.layer = _layer;
+            foreach (Transform child in _go.transform)
+            {
+                child.gameObject.layer = _layer;
+ 
+                Transform _HasChildren = child.GetComponentInChildren<Transform>();
+                if (_HasChildren != null)
+                    SetLayerAllChildrens(child.gameObject, _layer);
+            }
+        }
+
+        private void RevertWeaponToDefaultPosition()
+        {
+            RevolverUnequip();
+            SniperUnequip();
+            PistolEquip();
         }
 
         private void Die()
