@@ -44,7 +44,15 @@ namespace StateMachine.PlayerState
 
         public override void ChangeState(IStateable state)
         {
-            return;
+
+            if (state is DieState)
+            {
+                base.ChangeState(state);
+            }
+            else
+            {
+                return;
+            }
         }
 
         public void Shot()

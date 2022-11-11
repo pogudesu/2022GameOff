@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using CMF;
 using PlayerGun;
 using State.Interface;
@@ -6,6 +7,9 @@ using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
 using Attack;
+using EventHandler;
+using HealthSystem;
+using Obvious.Soap;
 
 namespace Player
 {
@@ -22,6 +26,7 @@ namespace Player
         private AttackState _pistolState = new AttackState();
         private AttackState _sniperState = new AttackState();
         private AttackState _dualPistolState = new AttackState();
+        private DieState _dieState = new DieState();
         private bool IsAirState => _airState.OnAir;
         private bool IsMoveState => _moveState.GetIsRunning;
         private bool IsIdleState => _idleState.GetIsIdle;
@@ -47,6 +52,9 @@ namespace Player
             _pistolState.SetGun(pistolGun);
             _sniperState.SetGun(sniperGun);
             _dualPistolState.SetGun(dualPistolGun);
+
+            IndividualHealth health = GetComponent<PlayerReceivedDamage>().health;
+            health.healthPoint.OnValueChanged += OnHealthChanged;
         }
 
         private void Start()
@@ -58,6 +66,7 @@ namespace Player
 
         private void Update()
         {
+            if (IsAllowedToUseController() == false) return;
             if(IsCurrentStateNotNull)
                 currentState.Update(this);
             UpdateControlState();
@@ -74,6 +83,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (IsAllowedToUseController() == false) return;
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
             bool IsSniperAttackPressed = Input.GetMouseButton(1);
             bool IsDualPistolPressed = Input.GetKey(KeyCode.Q);
@@ -193,6 +203,11 @@ namespace Player
             return IsPistolState || IsSniperState || IsDualPistolState;
         }
 
+        private bool IsAllowedToUseController()
+        {
+            return isActorDied == false;
+        }
+
 
         #region ############################ Animation Event ###################################
 
@@ -266,6 +281,31 @@ namespace Player
         }
 
         #endregion
-        
+
+        #region Player Died
+
+        public void OnHealthChanged(int health)
+        {
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            ChangeState(_dieState);
+            Debug.Log("PlayerDied");
+        }
+
+        private IEnumerator WaitForSecondsUntilEndScreen()
+        {
+            yield return new WaitForSeconds(3f);
+            EventManager.OnPlayerDied.Invoke();
+            Debug.Log("OnPlayerDied");
+        }
+
+        #endregion
+
     }
 }

@@ -15,11 +15,13 @@ namespace Attack
         [SerializeField] private TrailRenderer trailBullet;
         // [SerializeField] private LineRenderer lineBullet;
         [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private GameObject impactHit;
+        [SerializeField] private GameObject sniperImpactHit;
         private void Start()
         {
-            if(!sniperVFX) Debug.LogError("Sniper VFX is missing");
-            if(!pistolVFX) Debug.LogError("Pistol VFX is missing");
-            if(!revolverVFX) Debug.LogError("Revolver VFX is missing");
+            if(!sniperVFX) Debug.LogWarning("Sniper VFX is missing");
+            if(!pistolVFX) Debug.LogWarning("Pistol VFX is missing");
+            if(!revolverVFX) Debug.LogWarning("Revolver VFX is missing");
         }
 
         public void ShotSniper()
@@ -55,7 +57,7 @@ namespace Attack
             
             var bullet = Instantiate(trailBullet, muzzlePosition, Quaternion.identity);
             bullet.AddPosition(muzzlePosition);
-            
+
             RaycastHit hit;
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMask))
@@ -65,8 +67,18 @@ namespace Attack
                 Debug.Log("Did Hit");
 
                 bullet.transform.position = hit.point;
+                if (impactHit != null)
+                {
+                    GameObject impact;
+                    if (gunType == GunType.PISTOL || gunType == GunType.DUAL_PISTOL)
+                        impact = Instantiate(impactHit, hit.point, transform.rotation);
+                    else
+                        impact = Instantiate(sniperImpactHit, hit.point, transform.rotation);
+                    Destroy(impact, 1.5f);
+                }
                 IDamageable enemyHit = hit.transform.gameObject.GetComponent<IDamageable>();
-                enemyHit.TakeDamage(15, gunType);
+                if(enemyHit != null)
+                    enemyHit.TakeDamage(15, gunType);
             }
             else
             {

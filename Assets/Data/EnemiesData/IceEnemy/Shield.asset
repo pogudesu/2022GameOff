@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  _value: -12.750002
-  _initialValue: 100
+  _value: 0
+  _initialValue: 0
   _debugLogEnabled: 0
   _saved: 0
   _resetOn: 0

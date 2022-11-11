@@ -1,0 +1,16 @@
+{
+    "name": "EnemyInterface",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f5ccdc3bf16eeb940b2ab4db7a244f11"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

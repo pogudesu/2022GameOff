@@ -1,4 +1,6 @@
 
+using Enemy.Data;
+using Enemy.State;
 using NUnit.Framework;
 using PlayerGun;
 using State.Interface;
@@ -16,7 +18,7 @@ public class StateMachineTest
     public AttackState attackState;
     public ActorData actor;
     public Gun gun;
-    
+
     [SetUp]
     public void StateMachineSetUp()
     {
@@ -115,7 +117,7 @@ public class StateMachineTest
         
     }
     
-    #region ##################################### Attack State ###################################
+    #region ##################################### Attack Player State ###################################
 
     [Test]
     public void Test_Gun_Shot()
@@ -147,12 +149,61 @@ public class StateMachineTest
     }
 
     #endregion
+    
+    #region ##################################### Attack Enemy State ###################################
 
-
-    public class AttackHandler
+    [Test]
+    public void Enemy_Ice_Attack()
     {
-        
+        AttackEnemyState iceAttackState = new AttackEnemyState();
+        EnemyAttackData enemyAttackData = new EnemyAttackData() { animatorName = "Sample" };
+        iceAttackState.SetEnemyData(enemyAttackData);
+        actor.currentState.Exit(actor);
+        actor.currentState = iceAttackState;
+        actor.currentState.Enter(actor);
+        Assert.AreEqual(true, iceAttackState.IsAttacking);
     }
+    #endregion
+
+    #region Died State
+
+
+    [Test]
+    public void Test_Player_Died()
+    {
+        DieState die = new DieState();
+        actor.currentState.ChangeState(die);
+        Assert.AreEqual(true, actor.isActorDied);
+    }
+
+    [Test]
+    public void Test_Player_Died_While_Moving()
+    {
+        DieState die = new DieState();
+        actor.currentState.ChangeState(moveState);
+        actor.currentState.ChangeState(die);
+        Assert.AreEqual(true, actor.isActorDied);
+    }
+    
+    [Test]
+    public void Test_Player_Died_While_On_Attack_State()
+    {
+        DieState die = new DieState();
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        actor.currentState.ChangeState(die);
+        Assert.AreEqual(true, actor.isActorDied);
+    }
+
+    #endregion
+
+    
+    
+    
+
+
+
     
 
 }
