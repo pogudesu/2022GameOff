@@ -61,15 +61,20 @@ public class AirState : BaseState
     {
         if (state is HitState)
         {
-            RunAnimation(JUMP, false);
-            RunAnimation(FALLING, false);
-            RunAnimation(LANDING, false);
+            StopAnimation();
             base.ChangeState(state);
         }
         else
         {
             base.ChangeState(state);
         }
+    }
+
+    public void StopAnimation()
+    {
+        RunAnimation(JUMP, false);
+        RunAnimation(FALLING, false);
+        RunAnimation(LANDING, false);
     }
 
     private void ChangeToNextAvailableState()
@@ -84,6 +89,7 @@ public class AirState : BaseState
 
     public override void Exit(object obj)
     {
+        // StopAnimation();
         isOnAir = false;
         base.Exit(obj);
     }

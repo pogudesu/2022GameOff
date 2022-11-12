@@ -70,6 +70,19 @@ namespace Player
             currentState.Enter(this);
         }
 
+        private void OnEnable()
+        {
+            isControllable = true;
+            EventManager.OnPlayerEnteredBossArea.AddListener(OnPlayerEnteredBossArea);
+            EventManager.OnReadyForBattle.AddListener(() => isControllable = true);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnPlayerEnteredBossArea.RemoveListener(OnPlayerEnteredBossArea);
+            EventManager.OnReadyForBattle.RemoveListener(() => isControllable = true);
+        }
+
         private void Update()
         {
             if (IsAllowedToUseController() == false) return;
@@ -90,6 +103,7 @@ namespace Player
         private void FixedUpdate()
         {
             if (IsAllowedToUseController() == false) return;
+            // if (isControllable == false) return;
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
             bool IsSniperAttackPressed = Input.GetMouseButton(1);
             bool IsDualPistolPressed = Input.GetKey(KeyCode.Q);
@@ -211,7 +225,19 @@ namespace Player
 
         private bool IsAllowedToUseController()
         {
-            return isActorDied == false && IsHitState == false;
+            return isActorDied == false && IsHitState == false && isControllable;
+        }
+
+        private void OnPlayerEnteredBossArea()
+        {
+            // StopMoving();
+            isControllable = false;
+            StopMoving();
+            if(IsAirState) _airState.StopAnimation();
+            currentState.Exit(this);
+            currentState = _idleState;
+            currentState.Enter(this);
+            
         }
 
 

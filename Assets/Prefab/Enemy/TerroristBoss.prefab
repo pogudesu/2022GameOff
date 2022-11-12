@@ -1635,7 +1635,7 @@ GameObject:
   - component: {fileID: 6816948789343966713}
   - component: {fileID: 6816948789343966715}
   m_Layer: 6
-  m_Name: EnemyController
+  m_Name: TerroristBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
