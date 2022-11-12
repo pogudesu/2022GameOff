@@ -18,12 +18,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1920
-    height: 947
+    width: 1536
+    height: 730.8
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 138
+  controlID: 44
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -33,89 +33,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-  m_Script: {fileID: 12015, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinSize: {x: 200, y: 200}
+  m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Game
-    m_Image: {fileID: -6423792434712278376, guid: 0000000000000000d000000000000000, type: 0}
+    m_Text: Inspector
+    m_Image: {fileID: 8356117983803934776, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 836
-    y: 73
-    width: 1083
-    height: 537
+    x: 1088.8
+    y: 332
+    width: 446.19995
+    height: 451.4
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
-  m_SerializedViewNames: []
-  m_SerializedViewValues: []
-  m_PlayModeViewName: GameView
-  m_ShowGizmos: 0
-  m_TargetDisplay: 0
-  m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1083, y: 516}
-  m_TextureFilterMode: 0
-  m_TextureHideFlags: 61
-  m_RenderIMGUI: 1
-  m_EnterPlayModeBehavior: 1
-  m_UseMipMap: 0
-  m_VSyncEnabled: 0
-  m_Gizmos: 0
-  m_Stats: 0
-  m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  m_ZoomArea:
-    m_HRangeLocked: 0
-    m_VRangeLocked: 0
-    hZoomLockedByDefault: 0
-    vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -541.5
-    m_HBaseRangeMax: 541.5
-    m_VBaseRangeMin: -258
-    m_VBaseRangeMax: 258
-    m_HAllowExceedBaseRangeMin: 1
-    m_HAllowExceedBaseRangeMax: 1
-    m_VAllowExceedBaseRangeMin: 1
-    m_VAllowExceedBaseRangeMax: 1
-    m_ScaleWithWindow: 0
-    m_HSlider: 0
-    m_VSlider: 0
-    m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
-    m_EnableSliderZoomHorizontal: 0
-    m_EnableSliderZoomVertical: 0
-    m_UniformScale: 1
-    m_UpDirection: 1
-    m_DrawArea:
-      serializedVersion: 2
-      x: 0
-      y: 21
-      width: 1083
-      height: 516
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 541.5, y: 258}
-    m_MarginLeft: 0
-    m_MarginRight: 0
-    m_MarginTop: 0
-    m_MarginBottom: 0
-    m_LastShownAreaInsideMargins:
-      serializedVersion: 2
-      x: -541.5
-      y: -258
-      width: 1083
-      height: 516
-    m_MinimalGUI: 1
-  m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1083, y: 537}
-  m_ClearInEditMode: 1
-  m_NoCameraWarning: 1
-  m_LowResolutionForAspectRatios: 01000000000000000000
-  m_XRRenderMode: 0
-  m_RenderTexture: {fileID: 0}
+  m_ObjectsLockedBeforeSerialization: []
+  m_InstanceIDsLockedBeforeSerialization: 
+  m_PreviewResizer:
+    m_CachedPref: -239
+    m_ControlHash: -371814159
+    m_PrefName: Preview_InspectorPreview
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
+  m_GlobalObjectId: 
+  m_InspectorMode: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_PreviewWindow: {fileID: 0}
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,17 +79,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 4}
-  - {fileID: 9}
+  - {fileID: 11}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
-    height: 947
+    width: 1536
+    height: 730.8
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 139
+  controlID: 45
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -155,17 +104,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 5}
-  - {fileID: 8}
+  - {fileID: 9}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
-    height: 558
+    width: 1536
+    height: 258.4
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 85
+  controlID: 127
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,16 +132,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 836
-    height: 558
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+    width: 884
+    height: 258.4
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
   - {fileID: 7}
+  - {fileID: 8}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,14 +159,14 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Scene
-    m_Image: {fileID: 2593428753322112591, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -131512000283675692, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 73
-    width: 835
-    height: 537
+    y: 73.6
+    width: 883
+    height: 237.4
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -237,9 +187,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: -141, y: -188.6}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 3
       id: unity-grid-and-snap-toolbar
       index: 1
       layout: 1
@@ -451,9 +401,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.170273, y: 20.530167, z: 23.104906}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: -2.170273, y: 20.530167, z: 23.104906}
+    m_Value: {x: 0.000049044545, y: 0.000004715587, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -504,9 +454,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.010427735, y: 0.9332601, z: -0.35801965, w: 0.027181193}
   m_Size:
-    m_Target: 1.0307764
+    m_Target: 10
     speed: 2
-    m_Value: 1.0307764
+    m_Value: 10.000005
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -547,14 +497,14 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Animator
-    m_Image: {fileID: -1673928668082335149, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -6973158847631862895, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 73
-    width: 835
-    height: 537
+    y: 73.6
+    width: 883
+    height: 362.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -621,24 +571,144 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 12111, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 455, y: 354}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Asset Store
+    m_Image: {fileID: -4391848389275900105, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 0
+    y: 73.6
+    width: 883
+    height: 362.2
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+--- !u!114 &9
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 836
+    x: 884
     y: 0
-    width: 1084
-    height: 558
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 2}
+    width: 652
+    height: 258.4
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 10}
   m_Panes:
-  - {fileID: 2}
+  - {fileID: 10}
   m_Selected: 0
   m_LastSelected: 0
---- !u!114 &9
+--- !u!114 &10
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12015, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Game
+    m_Image: {fileID: 257045534191678443, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 884
+    y: 73.6
+    width: 651
+    height: 237.4
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SerializedViewNames: []
+  m_SerializedViewValues: []
+  m_PlayModeViewName: GameView
+  m_ShowGizmos: 0
+  m_TargetDisplay: 0
+  m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+  m_TargetSize: {x: 651, y: 216.4}
+  m_TextureFilterMode: 0
+  m_TextureHideFlags: 61
+  m_RenderIMGUI: 1
+  m_EnterPlayModeBehavior: 0
+  m_UseMipMap: 0
+  m_VSyncEnabled: 0
+  m_Gizmos: 0
+  m_Stats: 0
+  m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_ZoomArea:
+    m_HRangeLocked: 0
+    m_VRangeLocked: 0
+    hZoomLockedByDefault: 0
+    vZoomLockedByDefault: 0
+    m_HBaseRangeMin: -260.4
+    m_HBaseRangeMax: 260.4
+    m_VBaseRangeMin: -86.56
+    m_VBaseRangeMax: 86.56
+    m_HAllowExceedBaseRangeMin: 1
+    m_HAllowExceedBaseRangeMax: 1
+    m_VAllowExceedBaseRangeMin: 1
+    m_VAllowExceedBaseRangeMax: 1
+    m_ScaleWithWindow: 0
+    m_HSlider: 0
+    m_VSlider: 0
+    m_IgnoreScrollWheelUntilClicked: 0
+    m_EnableMouseInput: 1
+    m_EnableSliderZoomHorizontal: 0
+    m_EnableSliderZoomVertical: 0
+    m_UniformScale: 1
+    m_UpDirection: 1
+    m_DrawArea:
+      serializedVersion: 2
+      x: 0
+      y: 21
+      width: 651
+      height: 216.4
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 325.5, y: 108.2}
+    m_MarginLeft: 0
+    m_MarginRight: 0
+    m_MarginTop: 0
+    m_MarginBottom: 0
+    m_LastShownAreaInsideMargins:
+      serializedVersion: 2
+      x: -325.5
+      y: -108.2
+      width: 651
+      height: 216.4
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 813.75, y: 296.75}
+  m_ClearInEditMode: 1
+  m_NoCameraWarning: 1
+  m_LowResolutionForAspectRatios: 01000000000000000000
+  m_XRRenderMode: 0
+  m_RenderTexture: {fileID: 0}
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -651,20 +721,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 10}
-  - {fileID: 14}
+  - {fileID: 12}
   - {fileID: 16}
+  - {fileID: 19}
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 558
-    width: 1920
-    height: 389
+    y: 258.4
+    width: 1536
+    height: 472.4
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 140
---- !u!114 &10
+  controlID: 46
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -674,25 +744,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 989
-    height: 389
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 12}
+    width: 791.2
+    height: 472.4
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 13}
   m_Panes:
-  - {fileID: 11}
-  - {fileID: 12}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
---- !u!114 &11
+  - {fileID: 14}
+  - {fileID: 15}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,14 +778,14 @@ MonoBehaviour:
   m_MaxSize: {x: 10000, y: 10000}
   m_TitleContent:
     m_Text: Project
-    m_Image: {fileID: -5467254957812901981, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -2032128904892744680, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 570
-    width: 988
-    height: 429
+    y: 332
+    width: 790.2
+    height: 451.4
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -733,38 +803,38 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/State
+    - Assets/Editor/Tests
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/State
+  - Assets/Editor/Tests
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\GameJam\2022\2022GameOff
+  m_LastProjectPath: C:\Users\User\Documents\GitHub\2022GameOff
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 207}
-    m_SelectedIDs: 8c770000
-    m_LastClickedID: 30604
-    m_ExpandedIDs: 00000000ac750000ae750000b0750000b2750000b4750000b6750000b8750000ba750000bc750000be750000c0750000c2750000c4750000
+    scrollPos: {x: 0, y: 148.09845}
+    m_SelectedIDs: da800000
+    m_LastClickedID: 32986
+    m_ExpandedIDs: 00000000cc7e0000ce7e0000d07e0000d27e0000d47e0000d67e0000d87e0000da7e0000dc7e0000168100005681000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Scripts
+      m_OriginalName: Scripts
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 33046
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 12}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -776,7 +846,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ac750000ae750000b0750000b2750000b4750000b6750000b8750000ba750000bc750000be750000c0750000c2750000c4750000
+    m_ExpandedIDs: 00000000cc7e0000ce7e0000d07e0000d27e0000d47e0000d67e0000d87e0000da7e0000dc7e0000de7e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -801,26 +871,26 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 12fd0000
-    m_LastClickedInstanceID: 64786
+    m_SelectedInstanceIDs: 0ce0ffff
+    m_LastClickedInstanceID: -8180
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000000000000982b0100b43301007e860000
+    m_ExpandedInstanceIDs: c623000000000000982b0100b43301007e8600008cb10000ba8a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Tests
+      m_OriginalName: Tests
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 33780
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 10}
+      m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -832,7 +902,7 @@ MonoBehaviour:
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
---- !u!114 &12
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -848,19 +918,19 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Console
-    m_Image: {fileID: -4327648978806127646, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -3303252850963283158, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 631
-    width: 988
-    height: 368
+    y: 456.80002
+    width: 790.2
+    height: 326.59998
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &13
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -888,89 +958,6 @@ MonoBehaviour:
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &14
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneHierarchyWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 989
-    y: 0
-    width: 372
-    height: 389
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 15}
-  m_Panes:
-  - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Hierarchy
-    m_Image: {fileID: 7966133145522015247, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 989
-    y: 631
-    width: 370
-    height: 368
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_SceneHierarchy:
-    m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 14fbffff16fbffff
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 14}
-      m_SearchString: 
-    m_ExpandedScenes: []
-    m_CurrenRootInstanceID: 0
-    m_LockTracker:
-      m_IsLocked: 0
-    m_CurrentSortingName: TransformSorting
-  m_WindowGUID: 4c969a2b90040154d917609493e03593
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -981,17 +968,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
+  m_Name: FlowchartWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1361
+    x: 791.2
     y: 0
-    width: 559
-    height: 389
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+    width: 297.60004
+    height: 472.4
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
@@ -1007,39 +994,110 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinSize: {x: 275, y: 50}
+  m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Inspector
-    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
+    m_Text: Hierarchy
+    m_Image: {fileID: -9000905672528348964, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1361
-    y: 687
-    width: 558
-    height: 312
+    x: 791.2
+    y: 332
+    width: 295.60004
+    height: 451.4
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
-  m_ObjectsLockedBeforeSerialization: []
-  m_InstanceIDsLockedBeforeSerialization: 
-  m_PreviewResizer:
-    m_CachedPref: -239
-    m_ControlHash: -371814159
-    m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
-  m_GlobalObjectId: 
-  m_InspectorMode: 0
-  m_LockTracker:
-    m_IsLocked: 0
-  m_PreviewWindow: {fileID: 0}
+  m_SceneHierarchy:
+    m_TreeViewState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 7c830000
+      m_LastClickedID: 33660
+      m_ExpandedIDs: a6ebffffe0ebffff18fbffff
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_ExpandedScenes: []
+    m_CurrenRootInstanceID: 0
+    m_LockTracker:
+      m_IsLocked: 0
+    m_CurrentSortingName: TransformSorting
+  m_WindowGUID: 4c969a2b90040154d917609493e03593
 --- !u!114 &18
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbdd10bc8bb942a588a63ffdcb57895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Flowchart
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 791.2
+    y: 332
+    width: 295.60004
+    height: 451.4
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: InspectorWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 1088.8
+    y: 0
+    width: 447.19995
+    height: 472.4
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 2}
+  m_Panes:
+  - {fileID: 20}
+  - {fileID: 2}
+  m_Selected: 1
+  m_LastSelected: 0
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1059,21 +1117,21 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1361
-    y: 631
-    width: 558
-    height: 368
+    x: 1088.8
+    y: 332
+    width: 446.19995
+    height: 451.4
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 193
+    ID: 734
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
-    - 223
-    - 75
+    - 285.59998
+    - 95.2
     relativeSizes:
     - 0.75
     - 0.25
@@ -1083,7 +1141,7 @@ MonoBehaviour:
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 298
+    lastTotalSize: 380.8
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -1093,15 +1151,31 @@ MonoBehaviour:
     oldSplitSize: 0
   m_TestTypeToolbarIndex: 1
   m_PlayModeTestListGUI:
-    m_Window: {fileID: 0}
-    m_NewResultList: []
+    m_Window: {fileID: 20}
+    m_NewResultList:
+    - id: 1036
+      uniqueId: '[GameOff2022][suite]'
+      name: GameOff2022
+      fullName: GameOff2022
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
     m_ResultText: 
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 
+      m_ExpandedIDs: 6dc0a0b0ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1125,17 +1199,18 @@ MonoBehaviour:
       NotRunHidden: 0
       m_SearchString: 
       selectedCategoryMask: 0
-      availableCategories: []
+      availableCategories:
+      - Uncategorized
     m_SelectedOption: 0
   m_EditModeTestListGUI:
-    m_Window: {fileID: 18}
+    m_Window: {fileID: 20}
     m_NewResultList:
     - id: 1000
       uniqueId: '[GameOff2022][suite]'
       name: GameOff2022
       fullName: GameOff2022
       resultStatus: 1
-      duration: 0.2286656
+      duration: 0.2124196
       messages: 
       output: 
       stacktrace: 
@@ -1146,12 +1221,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1024
-      uniqueId: '[Tests][C:/GameJam/2022/2022GameOff/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1031
+      uniqueId: '[Tests][C:/Users/User/Documents/GitHub/2022GameOff/Library/ScriptAssemblies/Tests.dll][suite]'
       name: Tests.dll
-      fullName: C:/GameJam/2022/2022GameOff/Library/ScriptAssemblies/Tests.dll
+      fullName: C:/Users/User/Documents/GitHub/2022GameOff/Library/ScriptAssemblies/Tests.dll
       resultStatus: 1
-      duration: 0.2135364
+      duration: 0.0798606
       messages: 
       output: 
       stacktrace: 
@@ -1167,7 +1242,7 @@ MonoBehaviour:
       name: HealthTest
       fullName: HealthTest
       resultStatus: 1
-      duration: 0.0609431
+      duration: 0.0167947
       messages: 
       output: 
       stacktrace: 
@@ -1183,7 +1258,7 @@ MonoBehaviour:
       name: _10_Damage_Receive_To_0_Health_Point
       fullName: HealthTest._10_Damage_Receive_To_0_Health_Point
       resultStatus: 1
-      duration: 0.0370195
+      duration: 0.0086709
       messages: 
       output: 
       stacktrace: 
@@ -1200,7 +1275,7 @@ MonoBehaviour:
       name: _10_Damage_Receive_To_100_HealthPoint
       fullName: HealthTest._10_Damage_Receive_To_100_HealthPoint
       resultStatus: 1
-      duration: 0.0002935
+      duration: 0.0004538
       messages: 
       output: 
       stacktrace: 
@@ -1217,7 +1292,7 @@ MonoBehaviour:
       name: _Add_Max_Health_100
       fullName: HealthTest._Add_Max_Health_100
       resultStatus: 1
-      duration: 0.0002929
+      duration: 0.000586
       messages: 
       output: 
       stacktrace: 
@@ -1234,7 +1309,7 @@ MonoBehaviour:
       name: _Add_Max_Health_Negative_100
       fullName: HealthTest._Add_Max_Health_Negative_100
       resultStatus: 1
-      duration: 0.0002018
+      duration: 0.000361
       messages: 
       output: 
       stacktrace: 
@@ -1251,7 +1326,7 @@ MonoBehaviour:
       name: _Heal_10_From_10_Health_Point
       fullName: HealthTest._Heal_10_From_10_Health_Point
       resultStatus: 1
-      duration: 0.0002191
+      duration: 0.0004568
       messages: 
       output: 
       stacktrace: 
@@ -1268,7 +1343,7 @@ MonoBehaviour:
       name: _Heal_30_From_0_Health_Point
       fullName: HealthTest._Heal_30_From_0_Health_Point
       resultStatus: 1
-      duration: 0.0001839
+      duration: 0.0010004
       messages: 
       output: 
       stacktrace: 
@@ -1285,7 +1360,7 @@ MonoBehaviour:
       name: _Heal_30_From_100_Health_Point_And_100_Max_Health
       fullName: HealthTest._Heal_30_From_100_Health_Point_And_100_Max_Health
       resultStatus: 1
-      duration: 0.000179
+      duration: 0.0008261
       messages: 
       output: 
       stacktrace: 
@@ -1302,7 +1377,7 @@ MonoBehaviour:
       name: PlayerTest
       fullName: PlayerTest
       resultStatus: 1
-      duration: 0.0282104
+      duration: 0.0630377
       messages: 
       output: 
       stacktrace: 
@@ -1318,7 +1393,7 @@ MonoBehaviour:
       name: PlayerMovementHorizontalTest
       fullName: PlayerTest.PlayerMovementHorizontalTest
       resultStatus: 1
-      duration: 0.0035342
+      duration: 0.0112533
       messages: 
       output: 
       stacktrace: 
@@ -1334,7 +1409,7 @@ MonoBehaviour:
       name: PlayerMovementHorizontalTest(1,0,1)
       fullName: PlayerTest.PlayerMovementHorizontalTest(1,0,1)
       resultStatus: 1
-      duration: 0.0018121
+      duration: 0.0059229
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1356,7 +1431,7 @@ MonoBehaviour:
       name: PlayerMovementHorizontalTest(-1,0,-1)
       fullName: PlayerTest.PlayerMovementHorizontalTest(-1,0,-1)
       resultStatus: 1
-      duration: 0.0004762
+      duration: 0.0012322
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1378,7 +1453,7 @@ MonoBehaviour:
       name: PlayerMovementHorizontalTest(0,3,0)
       fullName: PlayerTest.PlayerMovementHorizontalTest(0,3,0)
       resultStatus: 1
-      duration: 0.0003457
+      duration: 0.0013124
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1400,7 +1475,7 @@ MonoBehaviour:
       name: PlayerMovementJumpTest
       fullName: PlayerTest.PlayerMovementJumpTest
       resultStatus: 1
-      duration: 0.0078163
+      duration: 0.0167517
       messages: 
       output: 
       stacktrace: 
@@ -1416,7 +1491,7 @@ MonoBehaviour:
       name: PlayerMovementJumpTest(True,True)
       fullName: PlayerTest.PlayerMovementJumpTest(True,True)
       resultStatus: 1
-      duration: 0.0009145
+      duration: 0.0022767
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1438,7 +1513,7 @@ MonoBehaviour:
       name: PlayerMovementJumpTest(False,False)
       fullName: PlayerTest.PlayerMovementJumpTest(False,False)
       resultStatus: 1
-      duration: 0.0003567
+      duration: 0.0008488
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1460,7 +1535,7 @@ MonoBehaviour:
       name: PlayerMovementVerticalTest
       fullName: PlayerTest.PlayerMovementVerticalTest
       resultStatus: 1
-      duration: 0.0080739
+      duration: 0.0198234
       messages: 
       output: 
       stacktrace: 
@@ -1476,7 +1551,7 @@ MonoBehaviour:
       name: PlayerMovementVerticalTest(1,1,0)
       fullName: PlayerTest.PlayerMovementVerticalTest(1,1,0)
       resultStatus: 1
-      duration: 0.000682
+      duration: 0.0016502
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1498,7 +1573,7 @@ MonoBehaviour:
       name: PlayerMovementVerticalTest(1,-1,0)
       fullName: PlayerTest.PlayerMovementVerticalTest(1,-1,0)
       resultStatus: 1
-      duration: 0.0003637
+      duration: 0.0010674
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1520,7 +1595,7 @@ MonoBehaviour:
       name: PlayerMovementVerticalTest(-1,0,0)
       fullName: PlayerTest.PlayerMovementVerticalTest(-1,0,0)
       resultStatus: 1
-      duration: 0.0003123
+      duration: 0.0009902
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1542,7 +1617,7 @@ MonoBehaviour:
       name: PlayerMovementVerticalTest(0,3,0)
       fullName: PlayerTest.PlayerMovementVerticalTest(0,3,0)
       resultStatus: 1
-      duration: 0.0003102
+      duration: 0.0008876
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1564,7 +1639,7 @@ MonoBehaviour:
       name: StateMachineTest
       fullName: StateMachineTest
       resultStatus: 1
-      duration: 0.1141842
+      duration: 0.0750664
       messages: 
       output: 
       stacktrace: 
@@ -1580,7 +1655,7 @@ MonoBehaviour:
       name: TestAirFalling
       fullName: StateMachineTest.TestAirFalling
       resultStatus: 1
-      duration: 0.0011192
+      duration: 0.003488
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1602,7 +1677,7 @@ MonoBehaviour:
       name: TestAirGrounded
       fullName: StateMachineTest.TestAirGrounded
       resultStatus: 1
-      duration: 0.0009235
+      duration: 0.0034396
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1624,7 +1699,7 @@ MonoBehaviour:
       name: TestAirJump
       fullName: StateMachineTest.TestAirJump
       resultStatus: 1
-      duration: 0.001196
+      duration: 0.001831
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1646,7 +1721,7 @@ MonoBehaviour:
       name: TestAirLandingWithHorizontalMovementPressed
       fullName: StateMachineTest.TestAirLandingWithHorizontalMovementPressed
       resultStatus: 1
-      duration: 0.0024912
+      duration: 0.0080379
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1686,7 +1761,7 @@ MonoBehaviour:
       name: TestAirRising
       fullName: StateMachineTest.TestAirRising
       resultStatus: 1
-      duration: 0.001205
+      duration: 0.0017195
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1708,7 +1783,7 @@ MonoBehaviour:
       name: TestIdleStateToFalseWhileRunning
       fullName: StateMachineTest.TestIdleStateToFalseWhileRunning
       resultStatus: 1
-      duration: 0.0015295
+      duration: 0.0047009
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1738,7 +1813,7 @@ MonoBehaviour:
       name: TestIdleStateToRunning
       fullName: StateMachineTest.TestIdleStateToRunning
       resultStatus: 1
-      duration: 0.0014748
+      duration: 0.0030229
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1762,7 +1837,7 @@ MonoBehaviour:
       name: TestRunningToIdle
       fullName: StateMachineTest.TestRunningToIdle
       resultStatus: 1
-      duration: 0.0018168
+      duration: 0.0415091
       messages: 
       output: 'Animator is not playing an AnimatorController
 
@@ -1792,17 +1867,12 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1022
       parentUniqueId: Tests.dll/[Tests][StateMachineTest][suite]
-    m_ResultText: 'TestAirLandingWithHorizontalMovementPressed (0.002s)
+    m_ResultText: 'TestRunningToIdle (0.042s)
 
       ---
 
-      Animator
-      is not playing an AnimatorController
-
-      Animator is not playing an AnimatorController
-
-      Animator
-      is not playing an AnimatorController
+      Animator is not playing
+      an AnimatorController
 
       Animator is not playing an AnimatorController
 
@@ -1820,10 +1890,10 @@ MonoBehaviour:
       is not playing an AnimatorController'
     m_ResultStacktrace: 
     m_TestListState:
-      scrollPos: {x: 0, y: 245}
-      m_SelectedIDs: 9e46f51f
-      m_LastClickedID: 536168094
-      m_ExpandedIDs: 44821d866dc0a0b08a885fbc250512be936212e8bb2eb60c02f3aa131082875b4e32e76effffff7f
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 422aaa35
+      m_LastClickedID: 900344386
+      m_ExpandedIDs: 44821d866dc0a0b08a885fbc250512be936212e810e2c9f41082875b4e32e76effffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
