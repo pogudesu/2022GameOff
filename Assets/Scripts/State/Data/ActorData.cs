@@ -16,6 +16,7 @@ namespace StateMachine.Data
         public ControllerState controllerState;
         public int currentJumpAvailable = 1;
         public bool isActorDied = false;
+        public bool isControllable = true;
         public Action onDied = null;
     }
 }

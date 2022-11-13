@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Attack;
+using EventHandler;
 using HealthSystem;
 using PlayerGun;
 using StateMachine.Data;
@@ -31,8 +32,19 @@ namespace Enemy
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
             health.healthPoint.OnValueChanged += OnChangedHealth;
             // Todo later, create event that initiate attack
-            InitAttack();
+            // InitAttack();
         }
+
+        private void OnEnable()
+        {
+            EventManager.OnReadyForBattle.AddListener(InitAttack);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnReadyForBattle.RemoveListener(InitAttack);
+        }
+
         private void InitAttack()
         {
             currentState.ChangeState(sniperState);
