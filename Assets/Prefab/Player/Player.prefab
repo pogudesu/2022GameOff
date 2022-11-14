@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 1353195355}
   - component: {fileID: 1353195356}
   - component: {fileID: 399443754}
+  - component: {fileID: 2771135990406240065}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -671,7 +672,9 @@ MonoBehaviour:
   controllerState: 0
   currentJumpAvailable: 1
   isActorDied: 0
+  isControllable: 1
   durationOfInvincibility: 3
+  _data: {fileID: 11400000, guid: 4a8b1fb0bfed22b43993edb827df42cb, type: 2}
   pistolGun: {fileID: 11400000, guid: 46f9462600044644d95e478cd27f3ad6, type: 2}
   sniperGun: {fileID: 11400000, guid: b64662ab42858964aa631d959f6d5f0c, type: 2}
   dualPistolGun: {fileID: 11400000, guid: b9d407ee46fc3ba41836fc064d223b43, type: 2}
@@ -763,6 +766,19 @@ MonoBehaviour:
   health:
     healthPoint: {fileID: 11400000, guid: ca3f371e1b7fd3f40b7e95d2dc8bf88c, type: 2}
     maxHealthPoint: {fileID: 11400000, guid: 04cf47e56316c3c4580ce94f53be5bb9, type: 2}
+--- !u!114 &2771135990406240065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153541548347091150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946757e65de746178059cc972f1b873b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerData: {fileID: 11400000, guid: 4a8b1fb0bfed22b43993edb827df42cb, type: 2}
 --- !u!1 &2153955376356326376
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,7 +2359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.943
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalPosition.z
