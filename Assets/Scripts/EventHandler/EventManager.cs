@@ -12,5 +12,8 @@ namespace EventHandler
         
         public static UnityEvent OnPlayerEnteredBossArea = new UnityEvent();
         public static UnityEvent OnReadyForBattle = new UnityEvent();
+
+        public static UnityEvent OnUnlockedSniper = new UnityEvent();
+        public static UnityEvent OnUnlockedDualPistol = new UnityEvent();
     }
 }

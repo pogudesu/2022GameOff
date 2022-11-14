@@ -39,8 +39,7 @@ namespace Player
         private bool IsNotGrounded => controllerState != ControllerState.Grounded;
         private bool IsHitState => _hitState.IsOnHitState;
         public float durationOfInvincibility = 2f;
-        // public LayerMask playerLayerNormal;
-        // public LayerMask playerLayerHit;
+        [SerializeField] private PlayerData _data;
 
         public Gun pistolGun;
         public Gun sniperGun;
@@ -114,11 +113,11 @@ namespace Player
             {
                 StopMoving();
                 StartAttackWithPistol();
-            }else if (IsSniperAttackPressed)
+            }else if (IsSniperAttackPressed && _data.isSniperUnlocked)
             {
                 StopMoving();
                 StartAttackWithSniper();
-            }else if (IsDualPistolPressed)
+            }else if (IsDualPistolPressed && _data.isDualPistolUnlocked)
             {
                 StopMoving();
                 StartAttackWithDualPistol();
