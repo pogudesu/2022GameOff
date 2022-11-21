@@ -353,6 +353,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -12.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2049165116092650376, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: useLocalMomentum
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2153541548347091150, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3733,6 +3737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217742625}
   - component: {fileID: 1217742624}
+  - component: {fileID: 1217742626}
   m_Layer: 0
   m_Name: FallTrigger
   m_TagString: Untagged
@@ -3768,6 +3773,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1217742626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217742623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6293d374154e5d9fd41829d2873796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 11400000, guid: ca3f371e1b7fd3f40b7e95d2dc8bf88c, type: 2}
 --- !u!1 &1235599570
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace Enemy.AttackComponent
 
         public void AttackTowards(Transform obj)
         {
-            GameObject projectile = Instantiate(particle, outputPosition.transform.position, Quaternion.identity);
+            GameObject projectile = Instantiate(particle, outputPosition.transform.position, outputPosition.transform.rotation);
             projectile.transform.position =
                 new Vector3(projectile.transform.position.x, projectile.transform.position.y, 0f);
             ProjectileMissile missile = projectile.GetComponent<ProjectileMissile>();

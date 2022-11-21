@@ -26,4 +26,29 @@ namespace Enemy.State
             base.Exit(obj);
         }
     }
+    
+    public class ProjectileAir : BaseState
+    {
+        public bool IsProjectileState { get; set; }
+        public int projectileAnimation = Animator.StringToHash("FlyProjectile");
+        public override void Enter(object obj)
+        {
+            if (SetActor(obj) == false) return;
+            base.Enter(obj);
+            IsProjectileState = true;
+            _actor._animator.SetTrigger(projectileAnimation);
+        }
+
+        public override void Update(object obj)
+        {
+            base.Update(obj);
+        }
+
+        public override void Exit(object obj)
+        {
+            IsProjectileState = false;
+            base.Exit(obj);
+        }
+    }
+    
 }

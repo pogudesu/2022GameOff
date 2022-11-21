@@ -346,6 +346,7 @@ namespace Player
             if (health > 0) Hit();
             if (health <= 0)
             {
+                StopMoving();
                 Die();
             }
         }
@@ -395,12 +396,12 @@ namespace Player
         private void Die()
         {
             ChangeState(_dieState);
-            Debug.Log("PlayerDied");
+            StartCoroutine(WaitForSecondsUntilEndScreen());
         }
 
         private IEnumerator WaitForSecondsUntilEndScreen()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             EventManager.OnPlayerDied.Invoke();
             Debug.Log("OnPlayerDied");
         }

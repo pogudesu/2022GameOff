@@ -16,12 +16,14 @@ namespace Enemy
         private IdleState _idleState = new IdleState();
         private GroundPound _groundPound = new GroundPound();
         private Projectile _projectile = new Projectile();
+        private ProjectileAir _projectileAir = new ProjectileAir();
         private DieState _dieState = new DieState();
-        private List<int> randomAttack = new List<int>();
+        private Dictionary<DragonAttack, int> dragonAttack = new Dictionary<DragonAttack, int>();
         [SerializeField] private Transform playerTransform;
-        private int projectileStartingWeight = 7;
+        private int projectileStartingLandWeight = 5;
+        private int projectileStartingAirWeight = 5;
         private int groundPoundStartingWeight = 3;
-        private int totalNumOfSkill = 2;
+        private int totalNumOfSkill = 3;
         public float mindurationForEachAttack = 1f;
         public float maxdurationForEachAttack = 1f;
         [SerializeField] private ProjectileHandler _projectileLandHandler;
@@ -50,9 +52,9 @@ namespace Enemy
 
         private void InitAttack()
         {
-            randomAttack.Clear();
-            randomAttack.Add(projectileStartingWeight); // index 0
-            randomAttack.Add(groundPoundStartingWeight); // index 1
+            dragonAttack[DragonAttack.AirProjectile] = projectileStartingAirWeight; 
+            dragonAttack[DragonAttack.LandProjectile] = projectileStartingLandWeight;
+            dragonAttack[DragonAttack.GroundPound] = groundPoundStartingWeight; 
             PickAttack();            
         }
 
@@ -66,12 +68,29 @@ namespace Enemy
 
         private IStateable RandomizeAttack()
         {
-            if (randomAttack.Count != 2) return _idleState;
-            int totalAttackWeight = randomAttack[0] + randomAttack[1];
+            if (dragonAttack.Count != 3) return _idleState;
+            int totalAttackWeight = dragonAttack[DragonAttack.AirProjectile] + dragonAttack[DragonAttack.LandProjectile] + dragonAttack[DragonAttack.GroundPound];
             int randomNumberAttackType = Random.Range(1, totalAttackWeight + 1);
-            if (randomAttack[0] <= randomNumberAttackType)
+            foreach (KeyValuePair<DragonAttack, int> attack in dragonAttack)
             {
-                return _groundPound;
+                if (randomNumberAttackType <= attack.Value)
+                {
+                    switch (attack.Key)
+                    {
+                        case DragonAttack.AirProjectile:
+                            return _projectileAir;
+                        case DragonAttack.LandProjectile:
+                            return _projectile;
+                        case DragonAttack.GroundPound:
+                            return _groundPound;
+                        default:
+                            return _idleState;
+                    }
+                }
+                else
+                {
+                    randomNumberAttackType -= attack.Value;
+                }
             }
             return _projectile;
         }
@@ -97,7 +116,7 @@ namespace Enemy
         
         public void CastWhileInAir()
         {
-            _projectileLandHandler.AttackTowards(playerTransform);
+            _projectileAirHandler.AttackTowards(playerTransform);
         }
         
         public void OnChangedHealth(int health)
@@ -121,5 +140,13 @@ namespace Enemy
         }
 
         #endregion
+    }
+
+
+    public enum DragonAttack
+    {
+        LandProjectile,
+        AirProjectile,
+        GroundPound
     }
 }
