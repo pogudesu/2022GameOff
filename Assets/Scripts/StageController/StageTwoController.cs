@@ -12,6 +12,14 @@ namespace StageController
     public class StageTwoController : MonoBehaviour
     {
         [SerializeField] private BoxCollider groundPoundCollosion;
+        [SerializeField] private PlayerData _playerData;
+
+        private void Start()
+        {
+            _playerData.currentStage += 1;
+            _playerData.isSniperUnlocked = true;
+        }
+
         public int groundPoundDamage = 10;
         private void OnEnable()
         {
