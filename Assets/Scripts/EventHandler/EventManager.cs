@@ -15,5 +15,6 @@ namespace EventHandler
 
         public static UnityEvent OnUnlockedSniper = new UnityEvent();
         public static UnityEvent OnUnlockedDualPistol = new UnityEvent();
+        public static UnityEvent OnGroundPound = new UnityEvent();
     }
 }
