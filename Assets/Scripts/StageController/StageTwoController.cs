@@ -32,7 +32,7 @@ namespace StageController
         {
             yield return new WaitForSeconds(0.15f);
             groundPoundCollosion.enabled = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
             groundPoundCollosion.enabled = false;
         } 
 

@@ -40,6 +40,7 @@ namespace Player
         private bool IsHitState => _hitState.IsOnHitState;
         public float durationOfInvincibility = 2f;
         [SerializeField] private PlayerData _data;
+        private float normalGravity;
 
         public Gun pistolGun;
         public Gun sniperGun;
@@ -60,6 +61,8 @@ namespace Player
 
             IndividualHealth health = GetComponent<PlayerReceivedDamage>().health;
             health.healthPoint.OnValueChanged += OnHealthChanged;
+
+            normalGravity = _sidescrollerController.gravity;
         }
 
         private void Start()
@@ -101,6 +104,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            IncreaseGravityWhenHit();
             if (IsAllowedToUseController() == false) return;
             // if (isControllable == false) return;
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
@@ -127,7 +131,20 @@ namespace Player
                 UpdatePlayerMovement(horizontalMovement, isJumpPressed);
             }
         }
-        
+
+        private void IncreaseGravityWhenHit()
+        {
+            if (IsHitState)
+            {
+                StopMoving();
+                _sidescrollerController.gravity += 50f;
+            }
+            else
+            {
+                _sidescrollerController.gravity = normalGravity;
+            }
+        }
+
         private void StartAttackWithPistol()
         {
             if (IsStateNotAvailableToShoot() == false) return;

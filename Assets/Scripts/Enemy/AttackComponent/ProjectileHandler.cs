@@ -6,12 +6,15 @@ namespace Enemy.AttackComponent
     {
         [SerializeField] private GameObject particle;
         [SerializeField] private GameObject outputPosition;
+        public float missileForce = 1;
 
         public void AttackTowards(Transform obj)
         {
             GameObject projectile = Instantiate(particle, outputPosition.transform.position, Quaternion.identity);
+            projectile.transform.position =
+                new Vector3(projectile.transform.position.x, projectile.transform.position.y, 0f);
             ProjectileMissile missile = projectile.GetComponent<ProjectileMissile>();
-            missile.Init(1f, obj);
+            missile.Init(missileForce, obj);
             Destroy(projectile, 5);
         }
     }

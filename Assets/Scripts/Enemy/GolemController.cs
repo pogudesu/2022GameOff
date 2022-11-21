@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.AttackComponent;
 using Enemy.State;
 using EventHandler;
 using HealthSystem;
@@ -7,6 +9,7 @@ using State.Interface;
 using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -23,14 +26,27 @@ namespace Enemy
         private int totalNumOfSkill = 2;
         public float mindurationForEachAttack = 1f;
         public float maxdurationForEachAttack = 1f;
+        private ProjectileHandler _projectileHandler;
         private void Start()
         {
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
             health.healthPoint.OnValueChanged += OnChangedHealth;
+
+            _projectileHandler = GetComponent<ProjectileHandler>();
             
             currentState = _idleState;
             currentState.Enter(this);
-            InitAttack();
+            
+        }
+
+        private void OnEnable()
+        {
+            EventManager.OnReadyForBattle.AddListener(InitAttack);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnReadyForBattle.RemoveListener(InitAttack);
         }
 
         private void InitAttack()
@@ -56,9 +72,9 @@ namespace Enemy
             int randomNumberAttackType = Random.Range(1, totalAttackWeight + 1);
             if (randomAttack[0] <= randomNumberAttackType)
             {
-                return _projectile;
+                return _groundPound;
             }
-            return _groundPound;
+            return _projectile;
         }
 
         #region Animation Event
@@ -78,7 +94,7 @@ namespace Enemy
 
         public void Cast()
         {
-            
+            _projectileHandler.AttackTowards(playerTransform);
         }
         
         
