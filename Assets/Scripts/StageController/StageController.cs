@@ -4,6 +4,7 @@ using Cinemachine;
 using EventHandler;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace StageController
 {
@@ -19,11 +20,18 @@ namespace StageController
         private void OnEnable()
         {
             EventManager.OnPlayerEnteredBossArea.AddListener(OnPlayerEnteredBossArea);
+            EventManager.OnPlayerDied.AddListener(OnPlayerDied);
+        }
+
+        private void OnPlayerDied()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void OnDisable()
         {
             EventManager.OnPlayerEnteredBossArea.RemoveListener(OnPlayerEnteredBossArea);
+            EventManager.OnPlayerDied.RemoveListener(OnPlayerDied);
         }
 
         private void OnPlayerEnteredBossArea()
