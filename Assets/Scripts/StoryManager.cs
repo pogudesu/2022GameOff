@@ -68,4 +68,5 @@ public class StoryManager : MonoBehaviour
     {
         eventCounter = 0;
     }
+    //ActiveControl
 }
