@@ -13,11 +13,14 @@ public class StoryManager : MonoBehaviour
     string nextLine = "";
     [SerializeField]
     List<string> companionText;
+    [SerializeField]
+    List<string> bossText;
+    List<string> currentText;
     List<string> usedText = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentText = companionText;
     }
 
     // Update is called once per frame
@@ -35,20 +38,34 @@ public class StoryManager : MonoBehaviour
 
     void ChangeStoryProgress()
     {
-
+        eventCounter += 1;
+        flowchart.SetIntegerVariable("eventCounter", eventCounter);
+        flowchart.StopAllBlocks();
+        flowchart.ExecuteBlock(baseBlockName);
     }
 
     void GenerateCompanionText()
     {
-        if (companionText.Count == 0)
+        if (currentText.Count == 0)
         {
-            companionText = usedText;
+            currentText = usedText;
             usedText = new List<string>();
         }
-        int index = Random.Range(0, companionText.Count);
-        nextLine = companionText[index];
+        int index = Random.Range(0, currentText.Count);
+        nextLine = currentText[index];
         flowchart.SetStringVariable("nextLine", nextLine);
         usedText.Add(nextLine);
         companionText.Remove(nextLine);
+    }
+
+    void SwitchTexts()
+    {
+        currentText = bossText;
+        usedText = new List<string>();
+    }
+
+    void ResetStoryProgress()
+    {
+        eventCounter = 0;
     }
 }
