@@ -15,6 +15,7 @@ namespace Attack
         [SerializeField] private TrailRenderer trailBullet;
         // [SerializeField] private LineRenderer lineBullet;
         [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private LayerMask _layerMaskCompanion;
         [SerializeField] private GameObject impactHit;
         [SerializeField] private GameObject sniperImpactHit;
         private void Start()
@@ -59,6 +60,10 @@ namespace Attack
             bullet.AddPosition(muzzlePosition);
 
             RaycastHit hit;
+            if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMaskCompanion))
+            {
+                Debug.Log("Companion hit");
+            }
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMask))
             {

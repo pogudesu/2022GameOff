@@ -678,6 +678,7 @@ MonoBehaviour:
   pistolGun: {fileID: 11400000, guid: 46f9462600044644d95e478cd27f3ad6, type: 2}
   sniperGun: {fileID: 11400000, guid: b64662ab42858964aa631d959f6d5f0c, type: 2}
   dualPistolGun: {fileID: 11400000, guid: b9d407ee46fc3ba41836fc064d223b43, type: 2}
+  damageReceiver: {fileID: 399443754}
 --- !u!114 &920419221067817618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,6 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 4a8b1fb0bfed22b43993edb827df42cb, type: 2}
+  isDevTesting: 1
 --- !u!1 &2153955376356326376
 GameObject:
   m_ObjectHideFlags: 0
