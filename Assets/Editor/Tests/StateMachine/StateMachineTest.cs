@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using CMF;
+
+using Enemy.Data;
+using Enemy.State;
 using NUnit.Framework;
+using PlayerGun;
 using State.Interface;
 using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
-using UnityEngine.TestTools;
-using UnityEngine.UI;
+
 
 public class StateMachineTest
 {
@@ -16,8 +15,10 @@ public class StateMachineTest
     public MoveState moveState;
     public IdleState idleState;
     public AirState airState;
+    public AttackState attackState;
     public ActorData actor;
-    
+    public Gun gun;
+
     [SetUp]
     public void StateMachineSetUp()
     {
@@ -30,12 +31,21 @@ public class StateMachineTest
         moveState = new MoveState();
         idleState = new IdleState();
         airState = new AirState();
+        attackState = new AttackState();
         actor.currentState = idleState;
         actor.currentState.Enter(actor);
+
+        gun = ScriptableObject.CreateInstance<Gun>();
+    }
+
+    [TearDown]
+    public void StatMachinTearDown()
+    {
+        Object.DestroyImmediate(gun);
     }
 
     [Test]
-    public void TestIdleStateToRunning()
+    public void Test_Idle_State_To_Running()
     {
         if (actor.currentState != null)
         {
@@ -47,7 +57,7 @@ public class StateMachineTest
     }
 
     [Test]
-    public void TestIdleStateToFalseWhileRunning()
+    public void Test_Idle_State_To_False_While_Running()
     {
         actor.currentState.ChangeState(idleState);
         actor.currentState.ChangeState(moveState);
@@ -55,7 +65,7 @@ public class StateMachineTest
     }
 
     [Test]
-    public void TestRunningToIdle()
+    public void Test_Running_To_Idle()
     {
         actor.currentState.ChangeState(idleState);
         actor.currentState.ChangeState(moveState);
@@ -64,14 +74,14 @@ public class StateMachineTest
     }
 
     [Test]
-    public void TestAirJump()
+    public void Test_Air_Jump()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Jumping;
         Assert.AreEqual(true, airState.IsJumping);
     }
     [Test]
-    public void TestAirFalling()
+    public void Test_Air_Falling()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Falling;
@@ -79,7 +89,7 @@ public class StateMachineTest
     }
     
     [Test]
-    public void TestAirRising()
+    public void Test_Air_Rising()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Rising;
@@ -87,7 +97,7 @@ public class StateMachineTest
     }
     
     [Test]
-    public void TestAirGrounded()
+    public void Test_Air_Grounded()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Grounded;
@@ -95,7 +105,7 @@ public class StateMachineTest
     }
     
     [Test]
-    public void TestAirLandingWithHorizontalMovementPressed()
+    public void Test_Air_Landing_With_Horizontal_Movement_Pressed()
     {
         actor.currentState.ChangeState(airState);
         actor.controllerState = ControllerState.Falling;
@@ -104,9 +114,131 @@ public class StateMachineTest
         actor.controllerState = ControllerState.Grounded;
         actor.currentState.Update(actor);
         Assert.AreEqual(true, moveState.GetIsRunning);
+        
+    }
+    
+    #region ##################################### Attack Player State ###################################
+
+    [Test]
+    public void Test_Gun_Shot()
+    {
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        Assert.AreEqual(true, attackState.IsAttackState);
     }
 
+    [Test]
+    public void Test_Gun_Shot_Then_Change_Move_State_Immediately()
+    {
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        actor.currentState.ChangeState(moveState);
+        Assert.AreEqual(true, attackState.IsAttackState);
+    }
 
+    [Test]
+    public void Test_Gun_With_EmptyBullets()
+    {
+        actor.currentState.ChangeState(moveState);
+        gun.currentNumBullet = 0;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        Assert.AreEqual(true, moveState.GetIsRunning);
+    }
+
+    #endregion
+    
+    #region ##################################### Attack Enemy State ###################################
+
+    [Test]
+    public void Enemy_Ice_Attack()
+    {
+        AttackEnemyState iceAttackState = new AttackEnemyState();
+        EnemyAttackData enemyAttackData = new EnemyAttackData() { animatorName = "Sample" };
+        iceAttackState.SetEnemyData(enemyAttackData);
+        actor.currentState.Exit(actor);
+        actor.currentState = iceAttackState;
+        actor.currentState.Enter(actor);
+        Assert.AreEqual(true, iceAttackState.IsAttacking);
+    }
+    #endregion
+
+    #region Died State
+
+
+    [Test]
+    public void Test_Player_Died()
+    {
+        DieState die = new DieState();
+        actor.currentState.ChangeState(die);
+        Assert.AreEqual(true, actor.isActorDied);
+    }
+
+    [Test]
+    public void Test_Player_Died_While_Moving()
+    {
+        DieState die = new DieState();
+        actor.currentState.ChangeState(moveState);
+        actor.currentState.ChangeState(die);
+        Assert.AreEqual(true, actor.isActorDied);
+    }
+    
+    [Test]
+    public void Test_Player_Died_While_On_Attack_State()
+    {
+        DieState die = new DieState();
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        actor.currentState.ChangeState(die);
+        Assert.AreEqual(true, actor.isActorDied);
+    }
+
+    #endregion
+    
+    #region Hit State
+
+    [Test]
+    public void Test_Hit_State()
+    {
+        HitState hitState = new HitState();
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnHitState);
+    }
+
+    [Test]
+    public void Test_Hit_State_From_Attack_State()
+    {
+        HitState hitState = new HitState();
+        gun.currentNumBullet = 1;
+        attackState.SetGun(gun);
+        actor.currentState.ChangeState(attackState);
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnHitState);
+    }
+
+    [Test]
+    public void Test_Hit_State_From_Moving()
+    {
+        HitState hitState = new HitState();
+        actor.currentState.ChangeState(moveState);
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnHitState);
+    }
+    
+    [Test]
+    public void Test_Hit_State_From_Jump()
+    {
+        HitState hitState = new HitState();
+        actor.currentState.ChangeState(airState);
+        actor.currentState.ChangeState(hitState);
+        Assert.AreEqual(true, hitState.IsOnAirStateHit);
+    }
+    
+    #endregion
+    
 }
 
 

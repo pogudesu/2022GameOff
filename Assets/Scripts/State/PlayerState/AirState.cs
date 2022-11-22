@@ -1,3 +1,5 @@
+using State.Interface;
+
 namespace StateMachine.PlayerState
 {
 public class AirState : BaseState
@@ -55,6 +57,26 @@ public class AirState : BaseState
         }
     }
 
+    public override void ChangeState(IStateable state)
+    {
+        if (state is HitState)
+        {
+            StopAnimation();
+            base.ChangeState(state);
+        }
+        else
+        {
+            base.ChangeState(state);
+        }
+    }
+
+    public void StopAnimation()
+    {
+        RunAnimation(JUMP, false);
+        RunAnimation(FALLING, false);
+        RunAnimation(LANDING, false);
+    }
+
     private void ChangeToNextAvailableState()
     {
         Exit(_actor);
@@ -67,7 +89,9 @@ public class AirState : BaseState
 
     public override void Exit(object obj)
     {
+        // StopAnimation();
         isOnAir = false;
+        base.Exit(obj);
     }
     
     private void Jump()

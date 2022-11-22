@@ -8,12 +8,15 @@ namespace StateMachine.Data
     public class ActorData : MonoBehaviour
     {
         public Animator _animator;
-        public IStateable currentState;
-        public IStateable previousState;
-        public IStateable nextState;
+        public IStateable currentState = null;
+        public IStateable previousState = null;
+        public IStateable nextState = null;
         [HideInInspector]
         public GameObject actorGameObject;
         public ControllerState controllerState;
         public int currentJumpAvailable = 1;
+        public bool isActorDied = false;
+        public bool isControllable = true;
+        public Action onDied = null;
     }
 }
