@@ -46,6 +46,7 @@ namespace Player
         public Gun sniperGun;
         public Gun dualPistolGun;
         public bool ActiveControl { get; set; }
+        public PlayerReceivedDamage damageReceiver;
         
         private void Awake()
         {
@@ -60,8 +61,6 @@ namespace Player
             _sniperState.SetGun(sniperGun);
             _dualPistolState.SetGun(dualPistolGun);
 
-            IndividualHealth health = GetComponent<PlayerReceivedDamage>().health;
-            health.healthPoint.OnValueChanged += OnHealthChanged;
 
             normalGravity = _sidescrollerController.gravity;
         }
@@ -75,6 +74,11 @@ namespace Player
 
         private void OnEnable()
         {
+            if (damageReceiver)
+            {
+                IndividualHealth health = damageReceiver.health;
+                health.healthPoint.OnValueChanged += OnHealthChanged;
+            }
             isControllable = true;
             EventManager.OnPlayerEnteredBossArea.AddListener(OnPlayerEnteredBossArea);
             EventManager.OnReadyForBattle.AddListener(() => isControllable = true);
@@ -84,6 +88,11 @@ namespace Player
         {
             EventManager.OnPlayerEnteredBossArea.RemoveListener(OnPlayerEnteredBossArea);
             EventManager.OnReadyForBattle.RemoveListener(() => isControllable = true);
+            if (damageReceiver)
+            {
+                IndividualHealth health = damageReceiver.health;
+                health.healthPoint.OnValueChanged -= OnHealthChanged;
+            }
         }
 
         private void Update()
@@ -107,7 +116,7 @@ namespace Player
         {
             IncreaseGravityWhenHit();
             if (IsAllowedToUseController() == false) return;
-            // if (isControllable == false) return;
+            if (isControllable == false) return;
             bool IsPistolAttackPressed = Input.GetMouseButton(0);
             bool IsSniperAttackPressed = Input.GetMouseButton(1);
             bool IsDualPistolPressed = Input.GetKey(KeyCode.Q);
@@ -344,6 +353,7 @@ namespace Player
         
         public void OnHealthChanged(int health)
         {
+            if (damageReceiver.health.healthPoint.Value == damageReceiver.health.maxHealthPoint.Value) return;
             if (health > 0) Hit();
             if (health <= 0)
             {

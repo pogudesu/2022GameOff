@@ -1,3 +1,4 @@
+using System;
 using Damageable;
 using HealthSystem;
 using PlayerGun;
@@ -9,6 +10,12 @@ namespace Player
     {
 
         public IndividualHealth health;
+
+        // private void Start()
+        // {
+        //     health.healthPoint.Value = health.maxHealthPoint.Value;
+        // }
+
         public void TakeDamage(int attackDamage, GunType attackType)
         {
             health.TakeDamage(attackDamage);

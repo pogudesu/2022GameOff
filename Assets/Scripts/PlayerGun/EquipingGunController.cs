@@ -26,38 +26,55 @@ namespace PlayerGun
 
         public void EquipRevolver()
         {
+            if (IsThereNullGunGameObject()) return;
             revolverUnequipedGameObject.SetActive(false);
             revolverEquipedGameObject.SetActive(true);
         }
 
         public void UnEquipRevolver()
         {
+            if (IsThereNullGunGameObject()) return;
             revolverEquipedGameObject.SetActive(false);
             revolverUnequipedGameObject.SetActive(true);
         }
 
         public void EquipPistol()
         {
+            if (IsThereNullGunGameObject()) return;
             pistolUnequipedGameObject.SetActive(false);
             pistolEquipedGameObject.SetActive(true);
         }
 
         public void UnEquipPistol()
         {
+            if (IsThereNullGunGameObject()) return;
             pistolEquipedGameObject.SetActive(false);
             pistolUnequipedGameObject.SetActive(true);
         }
 
         public void EquipSniper()
         {
+            if (IsThereNullGunGameObject()) return;
             sniperUnEquipedGameObject.SetActive(false);
             sniperEquipedGameObject.SetActive(true);
         }
 
         public void UnEquipSniper()
         {
+            if (IsThereNullGunGameObject()) return;
             sniperEquipedGameObject.SetActive(false);
             sniperUnEquipedGameObject.SetActive(true);
+        }
+
+        private bool IsThereNullGunGameObject()
+        {
+            if (revolverUnequipedGameObject == null) return true;
+            if (revolverEquipedGameObject == null) return true;
+            if (pistolEquipedGameObject == null) return true;
+            if (pistolUnequipedGameObject == null) return true;
+            if (sniperEquipedGameObject == null) return true;
+            if (sniperUnEquipedGameObject == null) return true;
+            return false;
         }
     }
 }
