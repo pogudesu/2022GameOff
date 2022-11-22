@@ -45,6 +45,7 @@ namespace Player
         public Gun pistolGun;
         public Gun sniperGun;
         public Gun dualPistolGun;
+        public bool ActiveControl { get; set; }
         
         private void Awake()
         {
@@ -241,7 +242,7 @@ namespace Player
 
         private bool IsAllowedToUseController()
         {
-            return isActorDied == false && IsHitState == false && isControllable;
+            return isActorDied == false && IsHitState == false && isControllable && ActiveControl == false;
         }
 
         private void OnPlayerEnteredBossArea()
