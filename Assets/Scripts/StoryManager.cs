@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Fungus;
+using EventHandler;
 
 public class StoryManager : MonoBehaviour
 {
     [SerializeField]
     Flowchart flowchart;
+    [SerializeField]
+    Player.PlayerController pC;
     bool companionTalk = false;
     int eventCounter = 0;
     string baseBlockName = "";
@@ -17,10 +21,14 @@ public class StoryManager : MonoBehaviour
     List<string> bossText;
     List<string> currentText;
     List<string> usedText = new List<string>();
+    UnityEvent bossDeath = EventManager.OnBossDeath;
+    
     // Start is called before the first frame update
     void Start()
     {
         currentText = companionText;
+        pC.isControllable = false;
+        bossDeath.AddListener(ChangeStoryProgress);
     }
 
     // Update is called once per frame
@@ -33,6 +41,7 @@ public class StoryManager : MonoBehaviour
     {
         companionTalk = !companionTalk;
         flowchart.SetBooleanVariable("companionTalk", companionTalk);
+        flowchart.StopAllBlocks();
         flowchart.ExecuteBlock(baseBlockName);
     }
 
@@ -69,4 +78,6 @@ public class StoryManager : MonoBehaviour
         eventCounter = 0;
     }
     //ActiveControl
+
+
 }
