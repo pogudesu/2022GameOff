@@ -147,7 +147,7 @@ namespace Player
             if (IsHitState)
             {
                 StopMoving();
-                _sidescrollerController.gravity += 50f;
+                _sidescrollerController.gravity += 20f;
             }
             else
             {

@@ -37,7 +37,7 @@ namespace Enemy
             
             currentState = _idleState;
             currentState.Enter(this);
-            
+            InitAttack(); // Todo: Delete Later After companion boss implemented
         }
 
         private void OnEnable()
