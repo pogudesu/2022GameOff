@@ -28,12 +28,14 @@ public class StoryManager : MonoBehaviour
     {
         
     }
+    
+    
 
     void ToggleCompanion()
     {
         companionTalk = !companionTalk;
         flowchart.SetBooleanVariable("companionTalk", companionTalk);
-        flowchart.ExecuteBlock(baseBlockName);
+        flowchart.ExecuteBlock("CompanionChat");
     }
 
     void ChangeStoryProgress()
@@ -41,7 +43,7 @@ public class StoryManager : MonoBehaviour
         eventCounter += 1;
         flowchart.SetIntegerVariable("eventCounter", eventCounter);
         flowchart.StopAllBlocks();
-        flowchart.ExecuteBlock(baseBlockName);
+        // flowchart.Get
     }
 
     void GenerateCompanionText()

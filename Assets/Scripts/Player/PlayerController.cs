@@ -79,7 +79,7 @@ namespace Player
                 IndividualHealth health = damageReceiver.health;
                 health.healthPoint.OnValueChanged += OnHealthChanged;
             }
-            isControllable = true;
+            // isControllable = true;
             EventManager.OnPlayerEnteredBossArea.AddListener(OnPlayerEnteredBossArea);
             EventManager.OnReadyForBattle.AddListener(() => isControllable = true);
         }
