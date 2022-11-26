@@ -109,6 +109,7 @@ namespace Enemy
         private void Die()
         {
             currentState.ChangeState(_dieState);
+            EventManager.OnBossDeath.Invoke();
         }
 
         private IEnumerator WaitIntervalUntilNextAttack()

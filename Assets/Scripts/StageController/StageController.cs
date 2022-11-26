@@ -40,7 +40,7 @@ namespace StageController
             RaiseUpInvisibleWall();
             DisableTrigger();
             ChangeCameraToBossCamera();
-            StartCoroutine(WaitForSecondsToReadyForBattle());
+            // StartCoroutine(WaitForSecondsToReadyForBattle());
         }
 
         IEnumerator WaitForSecondsToReadyForBattle()
