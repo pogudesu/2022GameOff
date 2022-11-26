@@ -13,6 +13,7 @@ public class StoryManager : MonoBehaviour
     Player.PlayerController pC;
     bool companionTalk = false;
     int eventCounter = 0;
+    [SerializeField]
     string baseBlockName = "";
     string nextLine = "";
     [SerializeField]
@@ -22,13 +23,19 @@ public class StoryManager : MonoBehaviour
     List<string> currentText;
     List<string> usedText = new List<string>();
     UnityEvent bossDeath = EventManager.OnBossDeath;
-    
+    UnityEvent enteredArena = EventManager.OnPlayerEnteredBossArea;
+    UnityEvent onSniper = EventManager.OnUnlockedSniper;
+    UnityEvent onDual = EventManager.OnUnlockedDualPistol;
+
     // Start is called before the first frame update
     void Start()
     {
         currentText = companionText;
         pC.isControllable = false;
         bossDeath.AddListener(ChangeStoryProgress);
+        enteredArena.AddListener(ChangeStoryProgress);
+        onSniper.AddListener(ChangeStoryProgress);
+        onDual.AddListener(ChangeStoryProgress);
     }
 
     // Update is called once per frame
@@ -37,10 +44,20 @@ public class StoryManager : MonoBehaviour
         
     }
 
+    void TogglePCControl()
+    {
+        pC.isControllable = !pC.isControllable;
+    }
+
     void ToggleCompanion()
     {
         companionTalk = !companionTalk;
         flowchart.SetBooleanVariable("companionTalk", companionTalk);
+    }
+
+    void ToggleCompanionText()
+    {
+        ToggleCompanion();
         flowchart.StopAllBlocks();
         flowchart.ExecuteBlock(baseBlockName);
     }
@@ -49,6 +66,10 @@ public class StoryManager : MonoBehaviour
     {
         eventCounter += 1;
         flowchart.SetIntegerVariable("eventCounter", eventCounter);
+        if(eventCounter == 2)
+        {
+            SwitchTexts();
+        }
         flowchart.StopAllBlocks();
         flowchart.ExecuteBlock(baseBlockName);
     }
