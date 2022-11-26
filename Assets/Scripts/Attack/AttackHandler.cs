@@ -18,6 +18,8 @@ namespace Attack
         [SerializeField] private LayerMask _layerMaskCompanion;
         [SerializeField] private GameObject impactHit;
         [SerializeField] private GameObject sniperImpactHit;
+        [SerializeField] private Transform secretTeleportationPosition;
+        private bool isTeleported = false;
         private void Start()
         {
             if(!sniperVFX) Debug.LogWarning("Sniper VFX is missing");
@@ -62,7 +64,13 @@ namespace Attack
             RaycastHit hit;
             if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMaskCompanion))
             {
-                Debug.Log("Companion hit");
+                Debug.Log("Companion Hit!");
+                if (isTeleported == false)
+                {
+                    isTeleported = true;
+                    if (secretTeleportationPosition != null)
+                        this.transform.position = secretTeleportationPosition.position;
+                }
             }
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMask))

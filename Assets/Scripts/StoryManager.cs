@@ -70,6 +70,10 @@ public class StoryManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayDuration);
         ExecuteNextConvo();
+    }
+
+    private void InitBattle()
+    {
         EventManager.OnReadyForBattle.Invoke();
     }
     
@@ -78,8 +82,13 @@ public class StoryManager : MonoBehaviour
         ChangeStoryProgress();
         flowchart.ExecuteBlock(baseBlockName);
     }
-    
-    
+
+    private void InitiateStage2BossArea()
+    {
+        InitiateStage();
+        InitBattle();
+        
+    }
 
     private void InitiateStage()
     {
