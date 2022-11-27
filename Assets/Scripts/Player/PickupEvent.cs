@@ -34,6 +34,7 @@ namespace Player
                         EventManager.OnUnlockedDualPistol.Invoke();
                         _playerData.currentStage += 1;
                         _playerData.isDualPistolUnlocked = true;
+                        _playerData.isSniperUnlocked = true;
                         Destroy(this.gameObject);
                         break;
                 }

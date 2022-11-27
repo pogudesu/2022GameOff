@@ -14,6 +14,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField]
     Player.PlayerController pC;
     [SerializeField]bool companionTalk = false;
+    [SerializeField]bool isFinalStage = false;
     int eventCounter = 0;
     [SerializeField]
     string baseBlockName = "";
@@ -38,7 +39,7 @@ public class StoryManager : MonoBehaviour
         bossDeath.AddListener(OnBossDeath);
         enteredArena.AddListener(OnEnteredArena);
         onSniper.AddListener(ChangeStoryProgress);
-        onDual.AddListener(ChangeStoryProgress);
+        // onDual.AddListener(ChangeStoryProgress);
     }
 
     private void OnDestroy()
@@ -46,7 +47,7 @@ public class StoryManager : MonoBehaviour
         bossDeath.RemoveListener(OnBossDeath);
         enteredArena.RemoveListener(OnEnteredArena);
         onSniper.RemoveListener(ChangeStoryProgress);
-        onDual.RemoveListener(ChangeStoryProgress);
+        // onDual.RemoveListener(ChangeStoryProgress);
     }
 
     private void OnEnteredArena()
@@ -56,6 +57,7 @@ public class StoryManager : MonoBehaviour
 
     private void OnBossDeath()
     {
+        if (isFinalStage) return;
         StartCoroutine(InitiateConvoWhenBossDead());
     }
 
@@ -77,7 +79,7 @@ public class StoryManager : MonoBehaviour
         EventManager.OnReadyForBattle.Invoke();
     }
     
-    private void ExecuteNextConvo()
+    public void ExecuteNextConvo()
     {
         ChangeStoryProgress();
         flowchart.ExecuteBlock(baseBlockName);
@@ -88,6 +90,19 @@ public class StoryManager : MonoBehaviour
         InitiateStage();
         InitBattle();
         
+    }
+    
+    
+    public void OnShootDecision()
+    {
+        flowchart.SetIntegerVariable("protagDecision", 1);
+        flowchart.ExecuteBlock(baseBlockName);
+    }
+
+    public void OnForgiveDesicion()
+    {
+        flowchart.SetIntegerVariable("protagDecision", 2);
+        flowchart.ExecuteBlock(baseBlockName);
     }
 
     private void InitiateStage()

@@ -7,6 +7,7 @@ namespace Enemy
 {
     public class CompanionBossController : DragonController
     {
+
         public int dashDamage = 10;
         private void OnTriggerEnter(Collider other)
         {

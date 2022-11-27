@@ -26,11 +26,9 @@ namespace Companion
 
         }
 
-        private void FixedUpdate()
+        private void SetDiactivate()
         {
-            
-
-            
+            this.gameObject.SetActive(false);
         }
     }
 }
