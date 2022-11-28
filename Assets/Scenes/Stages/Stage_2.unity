@@ -353,6 +353,34 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -12.25
       objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_BiasX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_BiasY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_ScreenX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_ScreenY
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_DeadZoneWidth
+      value: 0.169
+      objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 458721785, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: m_SoftZoneHeight
+      value: 0.861
+      objectReference: {fileID: 0}
     - target: {fileID: 1234213951, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
       propertyPath: damageReceiver
       value: 
@@ -1628,6 +1656,7 @@ MonoBehaviour:
   flowchart: {fileID: 1158753278}
   pC: {fileID: 74753729}
   companionTalk: 0
+  isFinalStage: 0
   baseBlockName: TextDecider
   companionText:
   - "... Pick it up! That gun right there is a one of a kind upgrade! You\u2019ll
@@ -6760,7 +6789,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1158753317
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -6806,7 +6835,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &1158753319
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -6827,7 +6856,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &1158753320
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10063,7 +10092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007421912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 287.42, y: 44.67, z: 0}
+  m_LocalPosition: {x: 287.13, y: 44.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

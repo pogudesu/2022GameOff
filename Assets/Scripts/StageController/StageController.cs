@@ -40,6 +40,8 @@ namespace StageController
             RaiseUpInvisibleWall();
             DisableTrigger();
             ChangeCameraToBossCamera();
+            EventManager.OnShowEnemyHealth.Invoke();
+            EventManager.OnShowPlayerHealth.Invoke();
             // StartCoroutine(WaitForSecondsToReadyForBattle());
         }
 

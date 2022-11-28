@@ -19,5 +19,8 @@ namespace EventHandler
 
         public static UnityEvent OnBossDeath = new UnityEvent();
         public static UnityEvent ExecuteNextConvo = new UnityEvent();
+
+        public static UnityEvent OnShowPlayerHealth = new UnityEvent();
+        public static UnityEvent OnShowEnemyHealth = new UnityEvent();
     }
 }
