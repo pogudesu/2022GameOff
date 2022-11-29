@@ -16,6 +16,7 @@ namespace StageController
         public CinemachineVirtualCamera bossCamera;
         public bool isInBossBattle;
         public float durationForReady =2f;
+        public bool isOnCutScene = false;
         
         private void OnEnable()
         {
@@ -25,6 +26,7 @@ namespace StageController
 
         private void OnPlayerDied()
         {
+            if (isOnCutScene == true) return;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

@@ -8,7 +8,6 @@ namespace StageController
 
         private void ActivateOutro()
         {
-            Cursor.visible = true;
             outroPanel.SetActive(true);
         }
     }

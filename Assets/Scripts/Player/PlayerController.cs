@@ -361,6 +361,11 @@ namespace Player
                 Die();
             }
         }
+
+        public void CutSceneFinalDecisionShoot()
+        {
+            currentState.ChangeState(_sniperState);
+        }
         [Button]
         public void Hit()
         {

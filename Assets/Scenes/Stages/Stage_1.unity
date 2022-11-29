@@ -3983,6 +3983,7 @@ MonoBehaviour:
   bossCamera: {fileID: 1725700961}
   isInBossBattle: 0
   durationForReady: 2
+  isOnCutScene: 0
 --- !u!4 &1823238651
 Transform:
   m_ObjectHideFlags: 0
