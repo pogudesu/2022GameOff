@@ -15,3 +15,4 @@ MonoBehaviour:
   currentNumBullet: 1
   animationName: DualPistolAttack
   type: 2
+  attackPower: 10

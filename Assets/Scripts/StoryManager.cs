@@ -15,6 +15,7 @@ public class StoryManager : MonoBehaviour
     Player.PlayerController pC;
     [SerializeField]bool companionTalk = false;
     [SerializeField]bool isFinalStage = false;
+    [SerializeField]bool Stage2 = false;
     int eventCounter = 0;
     [SerializeField]
     string baseBlockName = "";
@@ -30,6 +31,7 @@ public class StoryManager : MonoBehaviour
     UnityEvent onSniper = EventManager.OnUnlockedSniper;
     UnityEvent onDual = EventManager.OnUnlockedDualPistol;
     float delayDuration = 2f;
+    [SerializeField] private PlayerData _playerData;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,8 @@ public class StoryManager : MonoBehaviour
         pC.isControllable = false;
         bossDeath.AddListener(OnBossDeath);
         enteredArena.AddListener(OnEnteredArena);
-        onSniper.AddListener(ChangeStoryProgress);
+        // onSniper.AddListener(ChangeStoryProgress);
+        EventManager.OnHitCompanion.AddListener(OnHitCompanion);
         // onDual.AddListener(ChangeStoryProgress);
     }
 
@@ -46,10 +49,16 @@ public class StoryManager : MonoBehaviour
     {
         bossDeath.RemoveListener(OnBossDeath);
         enteredArena.RemoveListener(OnEnteredArena);
-        onSniper.RemoveListener(ChangeStoryProgress);
+        // onSniper.RemoveListener(ChangeStoryProgress);
+        EventManager.OnHitCompanion.RemoveListener(OnHitCompanion);
+
         // onDual.RemoveListener(ChangeStoryProgress);
     }
 
+    private void OnHitCompanion()
+    {
+        ToggleCompanionText();
+    }
     private void OnEnteredArena()
     {
         StartCoroutine(InitiateConvoForBossArena());
@@ -107,6 +116,15 @@ public class StoryManager : MonoBehaviour
 
     private void InitiateStage()
     {
+        // if (_playerData)
+        // {
+        //     if (_playerData.currentStage == 1)
+        //     {
+        //         EventManager.OnUnlockedPistol.Invoke();
+        //     }
+        // }
+        if(Stage2 == false)
+            EventManager.OnUnlockedPistol.Invoke();
         TogglePCControl();
         ChangeStoryProgress();
         ToggleCompanionText();
@@ -165,6 +183,16 @@ public class StoryManager : MonoBehaviour
     void ResetStoryProgress()
     {
         eventCounter = 0;
+    }
+    
+    private void ActivateLastNumber()
+    {
+        EventManager.OnThirdBossDefeat.Invoke();
+    }
+
+    private void ActivateCursor()
+    {
+        Cursor.visible = true;
     }
     //ActiveControl
 

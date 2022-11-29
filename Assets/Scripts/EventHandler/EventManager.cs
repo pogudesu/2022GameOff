@@ -14,7 +14,13 @@ namespace EventHandler
         public static UnityEvent OnReadyForBattle = new UnityEvent();
 
         public static UnityEvent OnUnlockedSniper = new UnityEvent();
+        public static UnityEvent OnUnlockedPistol = new UnityEvent();
         public static UnityEvent OnUnlockedDualPistol = new UnityEvent();
+        public static UnityEvent OnFirstBossDefeat = new UnityEvent();
+        public static UnityEvent OnSecondBossDefeat = new UnityEvent();
+        public static UnityEvent OnThirdBossDefeat = new UnityEvent();
+        public static UnityEvent OnHitCompanion = new UnityEvent();
+        
         public static UnityEvent OnGroundPound = new UnityEvent();
 
         public static UnityEvent OnBossDeath = new UnityEvent();

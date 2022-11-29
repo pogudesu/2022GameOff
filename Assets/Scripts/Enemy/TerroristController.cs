@@ -102,6 +102,13 @@ namespace Enemy
         {
             currentState.ChangeState(_dieState);
             EventManager.OnBossDeath.Invoke();
+            StartCoroutine(WaitUntilShowNumber());
+        }
+
+        IEnumerator WaitUntilShowNumber()
+        {
+            yield return new WaitForSeconds(2f);
+            EventManager.OnFirstBossDefeat.Invoke();
         }
 
         #endregion

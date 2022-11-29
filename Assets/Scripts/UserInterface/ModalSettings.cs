@@ -1,4 +1,5 @@
 using System;
+using EventHandler;
 using UnityEngine;
 
 namespace UserInterface
@@ -14,27 +15,45 @@ namespace UserInterface
 
         private void OnEnable()
         {
-            throw new NotImplementedException();
+            EventManager.OnUnlockedPistol.AddListener(OnFirstWeaponGet);
+            EventManager.OnUnlockedSniper.AddListener(OnSecondWeaponGet);
+            EventManager.OnUnlockedDualPistol.AddListener(OnThirdWeaponGet);
+            EventManager.OnFirstBossDefeat.AddListener(OnNumber5Get);
+            EventManager.OnSecondBossDefeat.AddListener(OnNumber3Get);
+            EventManager.OnThirdBossDefeat.AddListener(OnNumber7Get);
         }
 
         private void OnDisable()
         {
-            throw new NotImplementedException();
+            EventManager.OnUnlockedPistol.RemoveListener(OnFirstWeaponGet);
+            EventManager.OnUnlockedSniper.RemoveListener(OnSecondWeaponGet);
+            EventManager.OnUnlockedDualPistol.RemoveListener(OnThirdWeaponGet);
+            EventManager.OnFirstBossDefeat.RemoveListener(OnNumber5Get);
+            EventManager.OnSecondBossDefeat.RemoveListener(OnNumber3Get);
+            EventManager.OnThirdBossDefeat.RemoveListener(OnNumber7Get);
         }
 
         private void OnFirstWeaponGet()
         {
+            Cursor.visible = true;
             firstWeaponGet.SetActive(true);
         }
         
         private void OnSecondWeaponGet()
         {
+            Cursor.visible = true;
             secondWeaponGet.SetActive(true);
         }
         
         private void OnThirdWeaponGet()
         {
+            Cursor.visible = true;
             thirdWeaponGet.SetActive(true);
+        }
+
+        public void CloseModal()
+        {
+            Cursor.visible = false;
         }
         
         private void OnNumber5Get()

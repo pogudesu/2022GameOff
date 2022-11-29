@@ -42,6 +42,14 @@ namespace UserInterface
         public void TriggerSettingsPanel()
         {
             isSettingsPanelOn = !isSettingsPanelOn;
+            if (isSettingsPanelOn == true)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
             settings.SetActive(isSettingsPanelOn);
             SetCursor();
         }

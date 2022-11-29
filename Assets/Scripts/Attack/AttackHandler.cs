@@ -1,5 +1,6 @@
 using System;
 using Damageable;
+using EventHandler;
 using PlayerGun;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ namespace Attack
         [SerializeField] private GameObject impactHit;
         [SerializeField] private GameObject sniperImpactHit;
         [SerializeField] private Transform secretTeleportationPosition;
+        [SerializeField] private Gun pistol;
+        [SerializeField] private Gun sniper;
+        [SerializeField] private Gun dualPistol;
         private bool isTeleported = false;
         private void Start()
         {
@@ -65,12 +69,18 @@ namespace Attack
             if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMaskCompanion))
             {
                 Debug.Log("Companion Hit!");
-                if (isTeleported == false)
+                if (isTeleported == false && secretTeleportationPosition != null)
                 {
                     isTeleported = true;
-                    if (secretTeleportationPosition != null)
-                        this.transform.position = secretTeleportationPosition.position;
+                    this.transform.position = secretTeleportationPosition.position;
                 }
+                else
+                {
+                    EventManager.OnHitCompanion.Invoke();
+                }
+                
+                AttackHit(gunType, hit);
+                
             }
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(muzzlePosition, directionShot, out hit, 20f, _layerMask))
@@ -84,18 +94,10 @@ namespace Attack
                 }
 
                 bullet.transform.position = hit.point;
-                if (impactHit != null)
-                {
-                    GameObject impact;
-                    if (gunType == GunType.PISTOL || gunType == GunType.DUAL_PISTOL)
-                        impact = Instantiate(impactHit, hit.point, transform.rotation);
-                    else
-                        impact = Instantiate(sniperImpactHit, hit.point, transform.rotation);
-                    Destroy(impact, 1.5f);
-                }
+                AttackHit(gunType, hit);
                 IDamageable enemyHit = hit.transform.gameObject.GetComponent<IDamageable>();
                 if(enemyHit != null)
-                    enemyHit.TakeDamage(15, gunType);
+                    enemyHit.TakeDamage(GetAttackPower(gunType), gunType);
             }
             else
             {
@@ -106,11 +108,39 @@ namespace Attack
             }
         }
 
+        private void AttackHit(GunType gunType, RaycastHit hit)
+        {
+            if (impactHit != null)
+            {
+                GameObject impact;
+                if (gunType == GunType.PISTOL || gunType == GunType.DUAL_PISTOL)
+                    impact = Instantiate(impactHit, hit.point, transform.rotation);
+                else
+                    impact = Instantiate(sniperImpactHit, hit.point, transform.rotation);
+                Destroy(impact, 1.5f);
+            }
+        }
+
         private void StopSniperCharge()
         {
 
             sniperChargeVFX.Stop();
             
+        }
+
+        private int GetAttackPower(GunType gunType)
+        {
+            switch (gunType)
+            {
+                case GunType.PISTOL:
+                    return pistol.attackPower;
+                case GunType.SNIPER:
+                    return sniper.attackPower;
+                case GunType.DUAL_PISTOL:
+                    return dualPistol.attackPower;
+            }
+
+            return 0;
         }
     }
 }
