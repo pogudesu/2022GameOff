@@ -471,9 +471,9 @@ RectTransform:
   m_Father: {fileID: 339907217}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -38.900024, y: 38.074993}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 77.900024, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318229292
@@ -545,14 +545,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1714716, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 226248ac6f184e448af731df91b91958, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 648d9047acfb8eb46889bca66621ff00, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -693,7 +693,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1715,6 +1715,8 @@ GameObject:
   - component: {fileID: 952153549}
   - component: {fileID: 952153547}
   - component: {fileID: 952153548}
+  - component: {fileID: 952153555}
+  - component: {fileID: 952153554}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -1735,11 +1737,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 178.82716, y: 421.0565}
+  scrollPos: {x: 259.2398, y: 492.9425}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 202.8
-  zoom: 0.7015024
+  zoom: 0.57600254
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -1748,7 +1750,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 952153547}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 952153548}
   variables:
   - {fileID: 952153518}
   - {fileID: 952153517}
@@ -1838,10 +1841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 15
   indentLevel: 0
-  storyText: "Who dares approach, the lord of \rthis land?\nWhat little light wishes\r
-    to be stomped out, and sent down\r the underworld to serve as an\r example to
-    all passing souls,\nfor\r what happens when one DARES\r approaches \nthe Lord
-    of all things\r created and destroyed?"
+  storyText: "Who dares approach, the lord of \rthis land?\n"
   description: 
   character: {fileID: 1228682033}
   portrait: {fileID: 0}
@@ -1870,7 +1870,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 190.3562
     y: -158.53758
-    width: 118.424576
+    width: 116.666374
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1880,6 +1880,8 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 952153519}
+  - {fileID: 952153555}
+  - {fileID: 952153554}
   - {fileID: 952153521}
   suppressAllAutoSelections: 0
 --- !u!114 &952153521
@@ -1915,7 +1917,7 @@ MonoBehaviour:
   indentLevel: 0
   conversationText:
     stringRef: {fileID: 0}
-    stringVal: "Protag: I want to find out who killed my\r\nparents!\r\nDragon: And
+    stringVal: "Protag: I want to find out who killed my\r parents!\r\nDragon: And
       how, little light, will you do that?\nProtag: ...by robbing the last number
       of this\r credit card from you?\nDragon: ...YOU DARE THINK SO LITTLE OF ME!?\r
       YOU COME TO ONE OF MY CALIBER, WITH\r SUCH A SMALL REQUEST??\r\nCompanion:
@@ -1950,7 +1952,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 185.24562
     y: -131.02005
-    width: 120.70539
+    width: 120.83302
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2837,7 +2839,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 205.90338
     y: -229.38315
-    width: 101.31843
+    width: 99.99978
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3129,7 +3131,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 8.799988
     y: -130.30002
-    width: 119.56498
+    width: 118.05525
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3166,7 +3168,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &952153547
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3180,11 +3182,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 110.561165
     y: -37.136414
-    width: 138.95193
+    width: 137.4996
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 52
+  itemId: 62
   blockName: CompanionText
   description: 
   eventHandler: {fileID: 0}
@@ -3193,7 +3195,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &952153548
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3240,7 +3242,7 @@ MonoBehaviour:
   itemId: 58
   indentLevel: 1
   targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 0}
+  targetBlock: {fileID: 952153547}
   startLabel:
     stringRef: {fileID: 0}
     stringVal: 
@@ -3523,8 +3525,8 @@ MonoBehaviour:
   conversationText:
     stringRef: {fileID: 0}
     stringVal: "Dragon: Such... a bright soul... wasted, on\r a quest so... meaningless...\r\nProtag:
-      My parents may not have been the\r best, but I'll be damned if they go\r\nunavenged!\r\nDragon:
-      Here... the last number... to your,\r\ncard...\r\nProtag: Sweet!\nDragon: When...
+      My parents may not have been the\r best, but I'll be damned if they go\r unavenged!\r\nDragon:
+      Here... the last number... to your\r card...\r\nProtag: Sweet!\nDragon: When...
       I referred to your quest as\r meaningless... I was not speaking\r of your revenge...\nBut
       on the very idea, of looking\r for something... That is already\r found.\r\nProtag:
       ...huh? Sorry I zoned out-\nDragon: COMPANION KILLED YOUR PARENTS!\r\n...foolish...\n...dumbass...\n"
@@ -3556,11 +3558,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 186.70052
     y: -57.33351
-    width: 165.18137
+    width: 163.88838
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 52
+  itemId: 61
   blockName: CompanionBossText
   description: 
   eventHandler: {fileID: 0}
@@ -3568,6 +3570,62 @@ MonoBehaviour:
   - {fileID: 952153552}
   - {fileID: 952153551}
   suppressAllAutoSelections: 0
+--- !u!114 &952153554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952153513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 64
+  indentLevel: 0
+  storyText: "for\r what happens when one DARES\r approaches \nthe Lord of all things\r
+    created and destroyed?"
+  description: 
+  character: {fileID: 1228682033}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &952153555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952153513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 63
+  indentLevel: 0
+  storyText: "What little light wishes\r to be stomped out, and sent down\r the underworld
+    to serve as an\r example to all passing souls,"
+  description: 
+  character: {fileID: 1228682033}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &952690272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,9 +3659,9 @@ RectTransform:
   m_Father: {fileID: 1675448337}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 586.5, y: -38.369995}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -38.369995}
   m_SizeDelta: {x: 1106, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &952690274
@@ -3633,7 +3691,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 50
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -5149,6 +5207,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2155311652958034094, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
   m_PrefabInstance: {fileID: 686509024}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1366311547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1234213951, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+  m_PrefabInstance: {fileID: 686509024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366311545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bbb54b83cf645b586a7bc78790e43f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1386336731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5891,7 +5960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 952153514}
-  pC: {fileID: 0}
+  pC: {fileID: 1366311547}
   baseBlockName: TextDecider
   companionText:
   - "... Pick it up! That gun right there is a one of a kind upgrade! You\u2019ll
