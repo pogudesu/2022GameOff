@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce3278a58de4b80b7b88180111cd861, type: 3}
   m_Name: DualPistol
   m_EditorClassIdentifier: 
-  currentNumBullet: 1
+  currentNumBullet: 10000
   animationName: DualPistolAttack
   type: 2
-  attackPower: 10
+  attackPower: 20

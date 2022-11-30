@@ -28,5 +28,8 @@ namespace EventHandler
 
         public static UnityEvent OnShowPlayerHealth = new UnityEvent();
         public static UnityEvent OnShowEnemyHealth = new UnityEvent();
+        public static UnityEvent CameraShakeLow = new UnityEvent();
+        public static UnityEvent CameraShakeHigh = new UnityEvent();
+        public static UnityEvent SlowMo = new UnityEvent();
     }
 }

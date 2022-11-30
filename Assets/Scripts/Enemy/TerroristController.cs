@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Attack;
+using Audio;
 using EventHandler;
 using HealthSystem;
 using PlayerGun;
@@ -30,7 +31,7 @@ namespace Enemy
             currentState.Enter(this);
 
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
-            health.healthPoint.OnValueChanged += OnChangedHealth;
+            health.healthPoint.OnValueChanged += OnChangedHealthEnemy;
             // Todo later, create event that initiate attack
             // InitAttack();
         }
@@ -64,6 +65,8 @@ namespace Enemy
         {
             Debug.Log("Attack");
             _attackHandler.ShotSniper();
+            EventManager.CameraShakeHigh.Invoke();
+            SFXController.PlaySniper();
         }
         
         public void AttackAnimationEnd()
@@ -84,13 +87,14 @@ namespace Enemy
         public void SniperCharge()
         {
             _attackHandler.SniperChargeInit();
+            SFXController.PlayCharging();
         }
         public void PistolEquip(){}
         public void PistolUnequip(){}
 
         #region Event
 
-        public void OnChangedHealth(int health)
+        public void OnChangedHealthEnemy(int health)
         {
             if (health <= 0)
             {

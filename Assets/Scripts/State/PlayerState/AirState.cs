@@ -1,3 +1,4 @@
+using Audio;
 using State.Interface;
 
 namespace StateMachine.PlayerState
@@ -16,7 +17,8 @@ public class AirState : BaseState
     public bool IsFalling => _actor.controllerState == ControllerState.Falling || _actor.controllerState == ControllerState.Rising;
     public bool IsJumping => _actor.controllerState == ControllerState.Jumping;
     public ControllerState airState { get; private set; }
-
+    private bool isPlayedJump = false;
+    private bool isPlayedLanding = false;
 
     public override void Enter(object obj)
     {
@@ -26,6 +28,8 @@ public class AirState : BaseState
         _actor.currentJumpAvailable -= 1;
         if (_actor.currentJumpAvailable < 0)
             _actor.currentJumpAvailable = 0;
+        isPlayedJump = false;
+        isPlayedLanding = false;
         // if(_actor.controllerState == ControllerState.Grounded || _actor.controllerState == ControllerState.Jumping)
         //     Jump();
         // else if(_actor.controllerState == ControllerState.Falling || _actor.controllerState == ControllerState.Rising)
@@ -92,11 +96,14 @@ public class AirState : BaseState
         // StopAnimation();
         isOnAir = false;
         base.Exit(obj);
+        if(IsGrounded)
+            SFXController.PlayJump();
     }
     
     private void Jump()
     {
-        // RunAnimation();
+
+            
     }
 
     private void Falling()
@@ -108,6 +115,12 @@ public class AirState : BaseState
     private void Landing()
     {
         //Player Animation landing
+        // if (isPlayedLanding == false)
+        // {
+        //     SFXController.PlayLanding();
+        //     isPlayedLanding = true;
+        // }
+        // SFXController.PlayLanding();
     }
 }
 }

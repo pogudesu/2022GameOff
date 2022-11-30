@@ -1,6 +1,8 @@
 using System;
+using Audio;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 namespace UserInterface
 {
@@ -19,11 +21,29 @@ namespace UserInterface
 
         [SerializeField] private AudioMixer _audioMixer;
 
+        public Slider masterSlider;
+        public Slider bmgSlider;
+        public Slider sfxSlider;
+
 
         private void Awake()
         {
             SetVolume();
             SetCursor();
+        }
+
+        private void OnEnable()
+        {
+            masterSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
+            bmgSlider.onValueChanged.AddListener(OnBGMVolumeChanged);
+            sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+        }
+
+        private void OnDisable()
+        {
+            masterSlider.onValueChanged.RemoveListener(OnMasterVolumeChanged);
+            bmgSlider.onValueChanged.RemoveListener(OnBGMVolumeChanged);
+            sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
         }
 
         private void Update()
@@ -41,6 +61,7 @@ namespace UserInterface
 
         public void TriggerSettingsPanel()
         {
+            SFXController.PlayOpenUI();
             isSettingsPanelOn = !isSettingsPanelOn;
             if (isSettingsPanelOn == true)
             {
@@ -79,9 +100,9 @@ namespace UserInterface
 
         private void SetVolume()
         {
-            _audioMixer.SetFloat(MASTER_VOL, masterVol);
-            _audioMixer.SetFloat(BGM_VOL, bgmVol);
-            _audioMixer.SetFloat(SFX_VOL, sfxVol);
+            _audioMixer.SetFloat(MASTER_VOL, ConvertLinearToLogarithmic(masterVol));
+            _audioMixer.SetFloat(BGM_VOL, ConvertLinearToLogarithmic(bgmVol));
+            _audioMixer.SetFloat(SFX_VOL, ConvertLinearToLogarithmic(sfxVol));
         }
         
         private float ConvertLinearToLogarithmic(float value)

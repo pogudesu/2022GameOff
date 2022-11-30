@@ -2728,19 +2728,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8253939288521663676}
-        m_TargetAssemblyTypeName: UserInterface.SettingsManager, Assembly-CSharp
-        m_MethodName: OnMasterVolumeChanged
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8253939288327420222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,6 +3697,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 8253939289327423136}
   _audioMixer: {fileID: 24100000, guid: d28e9a3539446fc4e8b5740c971f5f61, type: 2}
+  masterSlider: {fileID: 8253939288267344464}
+  bmgSlider: {fileID: 8253939289063279257}
+  sfxSlider: {fileID: 8253939289137793225}
 --- !u!1 &8253939288579485137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6116,19 +6107,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8253939288521663676}
-        m_TargetAssemblyTypeName: UserInterface.SettingsManager, Assembly-CSharp
-        m_MethodName: OnBGMVolumeChanged
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8253939289065181213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6374,19 +6353,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8253939288521663676}
-        m_TargetAssemblyTypeName: UserInterface.SettingsManager, Assembly-CSharp
-        m_MethodName: OnSFXVolumeChanged
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8253939289150154977
 GameObject:
   m_ObjectHideFlags: 0
@@ -6672,6 +6639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outroPanel: {fileID: 8253939288049748751}
+  _audioBGMController: {fileID: 0}
 --- !u!1 &8253939289170481018
 GameObject:
   m_ObjectHideFlags: 0

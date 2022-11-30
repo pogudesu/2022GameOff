@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Enemy.AttackComponent;
 using Enemy.State;
 using EventHandler;
@@ -31,7 +32,7 @@ namespace Enemy
         private void Start()
         {
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
-            health.healthPoint.OnValueChanged += OnChangedHealth;
+            health.healthPoint.OnValueChanged += OnChangedHealthEnemy;
 
 
             
@@ -106,20 +107,23 @@ namespace Enemy
 
         public void GroundPoundAttackEvent()
         {
+            SFXController.PlayGroundPound();
             EventManager.OnGroundPound.Invoke();
         }
 
         public void Cast()
         {
+            SFXController.PlayCast();
             _projectileLandHandler.AttackTowards(playerTransform);
         }
         
         public void CastWhileInAir()
         {
+            SFXController.PlayCast();
             _projectileAirHandler.AttackTowards(playerTransform);
         }
         
-        public void OnChangedHealth(int health)
+        public void OnChangedHealthEnemy(int health)
         {
             if (health <= 0)
             {

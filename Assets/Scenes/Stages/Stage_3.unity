@@ -360,6 +360,8 @@ GameObject:
   - component: {fileID: 199592243}
   - component: {fileID: 199592242}
   - component: {fileID: 199592246}
+  - component: {fileID: 199592248}
+  - component: {fileID: 199592247}
   m_Layer: 0
   m_Name: Stage2Controller
   m_TagString: Untagged
@@ -385,6 +387,7 @@ MonoBehaviour:
   bossCamera: {fileID: 1216787767}
   isInBossBattle: 0
   durationForReady: 2
+  isOnCutScene: 0
 --- !u!114 &199592243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +444,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 4a8b1fb0bfed22b43993edb827df42cb, type: 2}
   isFinalStage: 0
+--- !u!114 &199592247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199592241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49308d69adf4c838e1cf0fbed7318e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _virtualCamera: {fileID: 1216787767}
+--- !u!114 &199592248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199592241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49308d69adf4c838e1cf0fbed7318e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _virtualCamera: {fileID: 686509025}
 --- !u!1001 &234453332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -813,6 +842,7 @@ GameObject:
   - component: {fileID: 420900502}
   - component: {fileID: 420900501}
   - component: {fileID: 420900500}
+  - component: {fileID: 420900503}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -896,6 +926,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &420900503
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420900498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 20a705aea2d80e0478fb89b6f43d8530, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 40
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &450937938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1385,6 +1432,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8682950379154738949, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: bossBgm
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ed9b5cb94d31e745964f6f4aae9aadc, type: 3}
+    - target: {fileID: 8682950379154738949, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
+      propertyPath: mainBgm
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e1e890a573086a4987451484f7d8292, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7758aef26cf484a4c89ecc2d1de12d61, type: 3}
 --- !u!114 &686509025 stripped

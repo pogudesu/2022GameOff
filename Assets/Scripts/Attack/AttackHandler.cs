@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Damageable;
 using EventHandler;
 using PlayerGun;
@@ -78,7 +79,7 @@ namespace Attack
                 {
                     EventManager.OnHitCompanion.Invoke();
                 }
-                
+                EventManager.SlowMo.Invoke();
                 AttackHit(gunType, hit);
                 
             }
@@ -92,12 +93,17 @@ namespace Attack
                 {
                     hit.rigidbody.AddForceAtPosition(directionShot * 2000f, hit.point);
                 }
+                else
+                {
+                    EventManager.SlowMo.Invoke();
+                }
 
                 bullet.transform.position = hit.point;
                 AttackHit(gunType, hit);
                 IDamageable enemyHit = hit.transform.gameObject.GetComponent<IDamageable>();
                 if(enemyHit != null)
                     enemyHit.TakeDamage(GetAttackPower(gunType), gunType);
+                
             }
             else
             {
@@ -117,6 +123,7 @@ namespace Attack
                     impact = Instantiate(impactHit, hit.point, transform.rotation);
                 else
                     impact = Instantiate(sniperImpactHit, hit.point, transform.rotation);
+                SFXController.PlayHit();
                 Destroy(impact, 1.5f);
             }
         }
