@@ -1,4 +1,6 @@
+using System;
 using HealthSystem;
+using Obvious.Soap;
 using UnityEngine;
 
 public class UIHealth : MonoBehaviour
@@ -6,31 +8,32 @@ public class UIHealth : MonoBehaviour
     [SerializeField]private GameObject healthForeground;
     private float maxWidth;
     private RectTransform healthRect;
-    [SerializeField]private IndividualHealth health;
+    [SerializeField] private IntVariable health;
+    [SerializeField] private IntVariable maxhealth;
     private void Awake()
     {
         healthRect = healthForeground.GetComponent<RectTransform>();
         maxWidth = healthRect.sizeDelta.x;
-        health.Initialize();
-        OnChangedHealthPointValue(health.healthPoint.Value);
+        OnChangedHealthPointValue(health.Value);
     }
 
     private void OnEnable()
     {
-        health.healthPoint.OnValueChanged += OnChangedHealthPointValue;
+        health.OnValueChanged += OnChangedHealthPointValue;
     }
 
     private void OnDisable()
     {
-        health.healthPoint.OnValueChanged -= OnChangedHealthPointValue;
+        health.OnValueChanged -= OnChangedHealthPointValue;
 
     }
 
     private void OnChangedHealthPointValue(int value)
     {
-        float percentage = (float)value / (float)health.maxHealthPoint.Value;
+        float percentage = (float)value / (float)maxhealth.Value;
+        // float percentage = Mathf.Lerp(0, maxhealth.Value, value);
         float currentValueWidth = maxWidth * percentage;
-        if (currentValueWidth < 0) return;
-        healthRect.sizeDelta = new Vector2(currentValueWidth,healthRect.sizeDelta.y);
+        // float currentValueWidth = Mathf.InverseLerp(0, maxWidth, percentage);
+        healthRect.sizeDelta = new Vector2(currentValueWidth, healthRect.sizeDelta.y);
     }
 }

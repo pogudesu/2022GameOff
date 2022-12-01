@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9133207925953174645}
   - component: {fileID: 9133207925953174644}
   - component: {fileID: 9133207925953174647}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9133207926056391496}
   - component: {fileID: 9133207926056391497}
-  m_Layer: 0
+  - component: {fileID: 41330172}
+  m_Layer: 10
   m_Name: Companion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,6 +154,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rangeFromPlayer: 2
+--- !u!135 &41330172
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133207926056391502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.74
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9133207927167354053
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +179,7 @@ GameObject:
   - component: {fileID: 9133207927167354049}
   - component: {fileID: 9133207927167354048}
   - component: {fileID: 9133207927167354055}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +276,7 @@ GameObject:
   - component: {fileID: 9133207927185610828}
   - component: {fileID: 9133207927185610835}
   - component: {fileID: 9133207927185610834}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

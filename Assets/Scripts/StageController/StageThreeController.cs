@@ -5,11 +5,14 @@ namespace StageController
     public class StageThreeController : MonoBehaviour
     {
         [SerializeField] private PlayerData _playerData;
+        [SerializeField] private bool isFinalStage;
 
         private void Start()
         {
-            _playerData.currentStage += 1;
+            if (isFinalStage == false) return;
+
             _playerData.isDualPistolUnlocked = true;
+            _playerData.isSniperUnlocked = true;
         }
     }
 }

@@ -15,4 +15,4 @@ MonoBehaviour:
   currentNumBullet: 1
   animationName: SniperAttack
   type: 1
-  attackPower: 30
+  attackPower: 40

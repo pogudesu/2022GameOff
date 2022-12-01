@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a48e678c373eed4590864992c603d0a, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  isSniperUnlocked: 1
-  isDualPistolUnlocked: 1
-  currentStage: 3
+  isSniperUnlocked: 0
+  isDualPistolUnlocked: 0
+  currentStage: 13

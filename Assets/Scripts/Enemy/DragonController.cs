@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Enemy.AttackComponent;
 using Enemy.State;
 using EventHandler;
@@ -28,30 +29,41 @@ namespace Enemy
         public float maxdurationForEachAttack = 1f;
         [SerializeField] private ProjectileHandler _projectileLandHandler;
         [SerializeField] private ProjectileHandler _projectileAirHandler;
+        private bool isPlayerDied = false;
         private void Start()
         {
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
-            health.healthPoint.OnValueChanged += OnChangedHealth;
+            health.healthPoint.OnValueChanged += OnChangedHealthEnemy;
 
 
             
             currentState = _idleState;
             currentState.Enter(this);
-            
+
+        }
+        
+        private void OnDestroy()
+        {
+            IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
+            health.healthPoint.OnValueChanged -= OnChangedHealthEnemy;
         }
 
         private void OnEnable()
         {
             EventManager.OnReadyForBattle.AddListener(InitAttack);
+            EventManager.OnPlayerDied.AddListener(() => isPlayerDied = true);
+
         }
 
         private void OnDisable()
         {
             EventManager.OnReadyForBattle.RemoveListener(InitAttack);
+            EventManager.OnPlayerDied.RemoveListener(() => isPlayerDied = true);
         }
 
         private void InitAttack()
         {
+            if (isPlayerDied) return;
             dragonAttack[DragonAttack.AirProjectile] = projectileStartingAirWeight; 
             dragonAttack[DragonAttack.LandProjectile] = projectileStartingLandWeight;
             dragonAttack[DragonAttack.GroundPound] = groundPoundStartingWeight; 
@@ -106,20 +118,23 @@ namespace Enemy
 
         public void GroundPoundAttackEvent()
         {
+            SFXController.PlayGroundPound();
             EventManager.OnGroundPound.Invoke();
         }
 
         public void Cast()
         {
+            SFXController.PlayCast();
             _projectileLandHandler.AttackTowards(playerTransform);
         }
         
         public void CastWhileInAir()
         {
+            SFXController.PlayCast();
             _projectileAirHandler.AttackTowards(playerTransform);
         }
         
-        public void OnChangedHealth(int health)
+        public void OnChangedHealthEnemy(int health)
         {
             if (health <= 0)
             {
@@ -130,6 +145,7 @@ namespace Enemy
         private void Die()
         {
             currentState.ChangeState(_dieState);
+            EventManager.OnBossDeath.Invoke();
         }
 
         private IEnumerator WaitIntervalUntilNextAttack()

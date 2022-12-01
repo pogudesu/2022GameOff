@@ -7,6 +7,7 @@ using StateMachine.Data;
 using StateMachine.PlayerState;
 using UnityEngine;
 using Attack;
+using Audio;
 using EventHandler;
 using HealthSystem;
 using NaughtyAttributes;
@@ -47,6 +48,7 @@ namespace Player
         public Gun dualPistolGun;
         public bool ActiveControl { get; set; }
         public PlayerReceivedDamage damageReceiver;
+        private ControllerState previousState;
         
         private void Awake()
         {
@@ -79,15 +81,17 @@ namespace Player
                 IndividualHealth health = damageReceiver.health;
                 health.healthPoint.OnValueChanged += OnHealthChanged;
             }
-            isControllable = true;
+            // isControllable = true;
             EventManager.OnPlayerEnteredBossArea.AddListener(OnPlayerEnteredBossArea);
             EventManager.OnReadyForBattle.AddListener(() => isControllable = true);
+            EventManager.OnBossDeath.AddListener(() => isControllable = false);
         }
 
         private void OnDisable()
         {
             EventManager.OnPlayerEnteredBossArea.RemoveListener(OnPlayerEnteredBossArea);
             EventManager.OnReadyForBattle.RemoveListener(() => isControllable = true);
+            EventManager.OnBossDeath.RemoveListener(() => isControllable = false);
             if (damageReceiver)
             {
                 IndividualHealth health = damageReceiver.health;
@@ -105,6 +109,13 @@ namespace Player
             {
                 ChangeState(_airState);
             }
+            if (Input.GetKeyDown(KeyCode.Space) && IsNotGrounded == false)
+            {
+                SFXController.PlayJump();
+            }
+            
+
+            previousState = controllerState;
         }
 
         private void UpdateControlState()
@@ -147,7 +158,7 @@ namespace Player
             if (IsHitState)
             {
                 StopMoving();
-                _sidescrollerController.gravity += 50f;
+                _sidescrollerController.gravity += 20f;
             }
             else
             {
@@ -283,9 +294,15 @@ namespace Player
             Debug.Log("Attack");
             if (IsSniperState)
             {
+                EventManager.CameraShakeHigh.Invoke();
+                SFXController.StopAudio();
+                SFXController.PlaySniper();
                 _attackHandler.ShotSniper();
+                
             }else if (IsPistolState || IsDualPistolState)
             {
+                EventManager.CameraShakeLow.Invoke();
+                SFXController.PlayRevolver();
                 _attackHandler.ShotRevolver();
             }
         }
@@ -293,19 +310,27 @@ namespace Player
         public void BothGunFire()
         {
             Debug.Log("BothGunFire");
+            EventManager.CameraShakeLow.Invoke();
+            SFXController.PlayRevolver();
+            SFXController.PlayPistol();
             _attackHandler.ShotPistol();
             _attackHandler.ShotRevolver();
+
         }
         
         public void GunOneFire()
         {
             Debug.Log("GunOneFire");
+            EventManager.CameraShakeLow.Invoke();
+            SFXController.PlayPistol();
             _attackHandler.ShotPistol();
+
         }
         
         public void SniperCharge()
         {
             _attackHandler.SniperChargeInit();
+            SFXController.PlayCharging();
         }
 
         public void RevolverEquip()
@@ -346,6 +371,16 @@ namespace Player
             currentState.Enter(this);
         }
 
+        public void LeftFoot()
+        {
+            SFXController.PlayLeftFoot();
+        }
+
+        public void RightFoot()
+        {
+            SFXController.PlayRightFoot();
+        }
+
         #endregion
 
         #region Player Died
@@ -361,9 +396,16 @@ namespace Player
                 Die();
             }
         }
+
+        public void CutSceneFinalDecisionShoot()
+        {
+            currentState.ChangeState(_sniperState);
+        }
         [Button]
         public void Hit()
         {
+            EventManager.SlowMo.Invoke();
+            EventManager.CameraShakeHigh.Invoke();
             currentState.ChangeState(_hitState);
             if (_hitState.IsOnAirStateHit == false)
             {
@@ -400,12 +442,17 @@ namespace Player
         private void RevertWeaponToDefaultPosition()
         {
             RevolverUnequip();
-            SniperUnequip();
-            PistolEquip();
+            if(_data.isSniperUnlocked)
+                SniperUnequip();
+            if(_data.isDualPistolUnlocked)
+                PistolEquip();
         }
 
         private void Die()
         {
+            EventManager.OnPlayerDiedTriggerFast.Invoke();
+            EventManager.SlowMo.Invoke();
+            EventManager.CameraShakeHigh.Invoke();
             ChangeState(_dieState);
             StartCoroutine(WaitForSecondsUntilEndScreen());
         }
