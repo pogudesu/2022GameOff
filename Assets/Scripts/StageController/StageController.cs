@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 using EventHandler;
 using Unity.VisualScripting;
@@ -16,22 +17,56 @@ namespace StageController
         public CinemachineVirtualCamera bossCamera;
         public bool isInBossBattle;
         public float durationForReady =2f;
-        
+        public bool isOnCutScene = false;
+        private List<CameraShake> _cameraShakes = new List<CameraShake>();
+
+        private void Awake()
+        {
+            CameraShake[] cameras = GetComponents<CameraShake>();
+            foreach (var cam in cameras)
+            {
+                _cameraShakes.Add(cam);
+            }
+            // _cameraShake = GetComponent<CameraShake>();
+        }
+
+        public void ShakeCameraLow()
+        {
+            foreach (var _cameraShake in _cameraShakes)
+            {
+                _cameraShake.Shake(0.1f, 0.2f);
+            }
+        }
+
+        public void ShakeCameraHigh()
+        {
+            foreach (var _cameraShake in _cameraShakes)
+            {
+                _cameraShake.Shake(0.24f, 1f);
+            }
+        }
+
         private void OnEnable()
         {
             EventManager.OnPlayerEnteredBossArea.AddListener(OnPlayerEnteredBossArea);
             EventManager.OnPlayerDied.AddListener(OnPlayerDied);
+            EventManager.CameraShakeLow.AddListener(ShakeCameraLow);
+            EventManager.CameraShakeHigh.AddListener(ShakeCameraHigh);
         }
 
         private void OnPlayerDied()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (isOnCutScene == true) return;
+            EventManager.OnPlayerDiedForUI.Invoke();
+            AnalyticsManager.Instance.PlayerDied();
         }
 
         private void OnDisable()
         {
             EventManager.OnPlayerEnteredBossArea.RemoveListener(OnPlayerEnteredBossArea);
             EventManager.OnPlayerDied.RemoveListener(OnPlayerDied);
+            EventManager.CameraShakeLow.RemoveListener(ShakeCameraLow);
+            EventManager.CameraShakeHigh.RemoveListener(ShakeCameraHigh);
         }
 
         private void OnPlayerEnteredBossArea()
@@ -40,7 +75,9 @@ namespace StageController
             RaiseUpInvisibleWall();
             DisableTrigger();
             ChangeCameraToBossCamera();
-            StartCoroutine(WaitForSecondsToReadyForBattle());
+            EventManager.OnShowEnemyHealth.Invoke();
+            EventManager.OnShowPlayerHealth.Invoke();
+            // StartCoroutine(WaitForSecondsToReadyForBattle());
         }
 
         IEnumerator WaitForSecondsToReadyForBattle()

@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Damageable;
 using PlayerGun;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Enemy.AttackComponent
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
+                SFXController.PlayHit();
                 IDamageable iDamage = other.gameObject.GetComponent<IDamageable>();
                 iDamage.TakeDamage(damage, GunType.SNIPER);
             }

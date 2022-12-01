@@ -23,6 +23,7 @@ namespace PlayerGun
         {
             return type;
         }
+        
     }
 
     public enum GunType

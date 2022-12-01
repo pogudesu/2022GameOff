@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Attack;
+using Audio;
 using EventHandler;
 using HealthSystem;
 using PlayerGun;
@@ -19,6 +20,7 @@ namespace Enemy
         private EquipingGunController _gunGameObjectHandler;
         private AttackHandler _attackHandler;
         public float intervalBetweenAttack = 2f;
+        private bool isPlayerDied = false;
 
         private void Start()
         {
@@ -30,23 +32,33 @@ namespace Enemy
             currentState.Enter(this);
 
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
-            health.healthPoint.OnValueChanged += OnChangedHealth;
+            health.healthPoint.OnValueChanged += OnChangedHealthEnemy;
             // Todo later, create event that initiate attack
             // InitAttack();
+        }
+
+        private void OnDestroy()
+        {
+            IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
+            health.healthPoint.OnValueChanged -= OnChangedHealthEnemy;
         }
 
         private void OnEnable()
         {
             EventManager.OnReadyForBattle.AddListener(InitAttack);
+            EventManager.OnPlayerDied.AddListener(() => isPlayerDied = true);
+
         }
 
         private void OnDisable()
         {
             EventManager.OnReadyForBattle.RemoveListener(InitAttack);
+            EventManager.OnPlayerDied.RemoveListener(() => isPlayerDied = true);
         }
 
         private void InitAttack()
         {
+            if (isPlayerDied) return;
             currentState.ChangeState(sniperState);
         }
         
@@ -64,6 +76,8 @@ namespace Enemy
         {
             Debug.Log("Attack");
             _attackHandler.ShotSniper();
+            EventManager.CameraShakeHigh.Invoke();
+            SFXController.PlaySniper();
         }
         
         public void AttackAnimationEnd()
@@ -84,13 +98,14 @@ namespace Enemy
         public void SniperCharge()
         {
             _attackHandler.SniperChargeInit();
+            SFXController.PlayCharging();
         }
         public void PistolEquip(){}
         public void PistolUnequip(){}
 
         #region Event
 
-        public void OnChangedHealth(int health)
+        public void OnChangedHealthEnemy(int health)
         {
             if (health <= 0)
             {
@@ -101,6 +116,14 @@ namespace Enemy
         private void Die()
         {
             currentState.ChangeState(_dieState);
+            EventManager.OnBossDeath.Invoke();
+            StartCoroutine(WaitUntilShowNumber());
+        }
+
+        IEnumerator WaitUntilShowNumber()
+        {
+            yield return new WaitForSeconds(2f);
+            EventManager.OnFirstBossDefeat.Invoke();
         }
 
         #endregion

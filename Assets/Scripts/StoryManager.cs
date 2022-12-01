@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Fungus;
+using EventHandler;
+using StageController;
+using Random = UnityEngine.Random;
 
 public class StoryManager : MonoBehaviour
 {
     [SerializeField]
     Flowchart flowchart;
-    bool companionTalk = false;
+    [SerializeField]
+    Player.PlayerController pC;
+    [SerializeField]bool companionTalk = false;
+    [SerializeField]bool isFinalStage = false;
+    [SerializeField]bool Stage2 = false;
     int eventCounter = 0;
+    [SerializeField]
     string baseBlockName = "";
     string nextLine = "";
     [SerializeField]
@@ -17,31 +27,140 @@ public class StoryManager : MonoBehaviour
     List<string> bossText;
     List<string> currentText;
     List<string> usedText = new List<string>();
+    UnityEvent bossDeath = EventManager.OnBossDeath;
+    UnityEvent enteredArena = EventManager.OnPlayerEnteredBossArea;
+    UnityEvent onSniper = EventManager.OnUnlockedSniper;
+    UnityEvent onDual = EventManager.OnUnlockedDualPistol;
+    float delayDuration = 2f;
+    [SerializeField] private PlayerData _playerData;
+
     // Start is called before the first frame update
     void Start()
     {
         currentText = companionText;
+        pC.isControllable = false;
+        bossDeath.AddListener(OnBossDeath);
+        enteredArena.AddListener(OnEnteredArena);
+        // onSniper.AddListener(ChangeStoryProgress);
+        EventManager.OnHitCompanion.AddListener(OnHitCompanion);
+        // onDual.AddListener(ChangeStoryProgress);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
+        bossDeath.RemoveListener(OnBossDeath);
+        enteredArena.RemoveListener(OnEnteredArena);
+        // onSniper.RemoveListener(ChangeStoryProgress);
+        EventManager.OnHitCompanion.RemoveListener(OnHitCompanion);
+
+        // onDual.RemoveListener(ChangeStoryProgress);
+    }
+
+    private void OnHitCompanion()
+    {
+        ToggleCompanionText();
+    }
+    private void OnEnteredArena()
+    {
+        StartCoroutine(InitiateConvoForBossArena());
+    }
+
+    private void OnBossDeath()
+    {
+        if (isFinalStage) return;
+        StartCoroutine(InitiateConvoWhenBossDead());
+    }
+
+    IEnumerator InitiateConvoWhenBossDead()
+    {
+        yield return new WaitForSeconds(delayDuration);
+        ExecuteNextConvo();
+    }
+    
+
+    IEnumerator InitiateConvoForBossArena()
+    {
+        yield return new WaitForSeconds(delayDuration);
+        ExecuteNextConvo();
+    }
+
+    private void InitBattle()
+    {
+        EventManager.OnReadyForBattle.Invoke();
+    }
+    
+    public void ExecuteNextConvo()
+    {
+        ChangeStoryProgress();
+        flowchart.ExecuteBlock(baseBlockName);
+    }
+
+    private void InitiateStage2BossArea()
+    {
+        InitiateStage();
+        InitBattle();
         
+    }
+    
+    
+    public void OnShootDecision()
+    {
+        AnalyticsManager.Instance.OnShoot();
+        flowchart.SetIntegerVariable("protagDecision", 1);
+        flowchart.ExecuteBlock(baseBlockName);
+    }
+
+    public void OnForgiveDesicion()
+    {
+        AnalyticsManager.Instance.OnForgive();
+        flowchart.SetIntegerVariable("protagDecision", 2);
+        flowchart.ExecuteBlock(baseBlockName);
+    }
+
+    private void InitiateStage()
+    {
+        // if (_playerData)
+        // {
+        //     if (_playerData.currentStage == 1)
+        //     {
+        //         EventManager.OnUnlockedPistol.Invoke();
+        //     }
+        // }
+        if(Stage2 == false)
+            EventManager.OnUnlockedPistol.Invoke();
+        TogglePCControl();
+        ChangeStoryProgress();
+        ToggleCompanionText();
+    }
+
+    void TogglePCControl()
+    {
+        pC.isControllable = !pC.isControllable;
     }
 
     void ToggleCompanion()
     {
         companionTalk = !companionTalk;
         flowchart.SetBooleanVariable("companionTalk", companionTalk);
+    }
+
+    void ToggleCompanionText()
+    {
+        ToggleCompanion();
+        flowchart.StopAllBlocks();
         flowchart.ExecuteBlock(baseBlockName);
     }
 
     void ChangeStoryProgress()
     {
-        eventCounter += 1;
+         eventCounter += 1;
         flowchart.SetIntegerVariable("eventCounter", eventCounter);
+        if(eventCounter == 2)
+        {
+            SwitchTexts();
+        }
         flowchart.StopAllBlocks();
-        flowchart.ExecuteBlock(baseBlockName);
+        // flowchart.Get
     }
 
     void GenerateCompanionText()
@@ -68,4 +187,17 @@ public class StoryManager : MonoBehaviour
     {
         eventCounter = 0;
     }
+    
+    private void ActivateLastNumber()
+    {
+        EventManager.OnThirdBossDefeat.Invoke();
+    }
+
+    private void ActivateCursor()
+    {
+        Cursor.visible = true;
+    }
+    //ActiveControl
+
+
 }

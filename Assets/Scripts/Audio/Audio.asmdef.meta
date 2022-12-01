@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/ThirdParty/SFX.meta
+guid: 3d072371d727b62489d1047a5e47503a
+folderAsset: yes
+DefaultImporter:
+========
+guid: 4404b30e703493b489395488794b3998
+AssemblyDefinitionImporter:
+>>>>>>>> dacbd25e14585c35844499e462220ccae8ab77dc:Assets/Scripts/Audio/Audio.asmdef.meta
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

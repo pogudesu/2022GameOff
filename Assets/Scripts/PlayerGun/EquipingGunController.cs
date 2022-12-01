@@ -54,14 +54,14 @@ namespace PlayerGun
 
         public void EquipSniper()
         {
-            if (IsThereNullGunGameObject()) return;
+            // if (IsThereNullGunGameObject()) return;
             sniperUnEquipedGameObject.SetActive(false);
             sniperEquipedGameObject.SetActive(true);
         }
 
         public void UnEquipSniper()
         {
-            if (IsThereNullGunGameObject()) return;
+            // if (IsThereNullGunGameObject()) return;
             sniperEquipedGameObject.SetActive(false);
             sniperUnEquipedGameObject.SetActive(true);
         }

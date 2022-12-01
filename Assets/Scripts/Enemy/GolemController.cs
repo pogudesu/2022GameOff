@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Enemy.AttackComponent;
 using Enemy.State;
 using EventHandler;
@@ -27,10 +28,11 @@ namespace Enemy
         public float mindurationForEachAttack = 1f;
         public float maxdurationForEachAttack = 1f;
         private ProjectileHandler _projectileHandler;
+        private bool isPlayerDied = false;
         private void Start()
         {
             IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
-            health.healthPoint.OnValueChanged += OnChangedHealth;
+            health.healthPoint.OnValueChanged += OnChangedHealthEnemy;
 
             _projectileHandler = GetComponent<ProjectileHandler>();
             
@@ -38,19 +40,30 @@ namespace Enemy
             currentState.Enter(this);
             
         }
+        
+        private void OnDestroy()
+        {
+            IndividualHealth health = GetComponent<EnemyReceivedDamage>().health;
+            health.healthPoint.OnValueChanged -= OnChangedHealthEnemy;
+        }
 
         private void OnEnable()
         {
             EventManager.OnReadyForBattle.AddListener(InitAttack);
+            EventManager.OnPlayerDied.AddListener(() => isPlayerDied = true);
+            
         }
 
         private void OnDisable()
         {
             EventManager.OnReadyForBattle.RemoveListener(InitAttack);
+            EventManager.OnPlayerDied.RemoveListener(() => isPlayerDied = true);
         }
 
         private void InitAttack()
         {
+            
+            if (isPlayerDied) return;
             randomAttack.Clear();
             randomAttack.Add(projectileStartingWeight); // index 0
             randomAttack.Add(groundPoundStartingWeight); // index 1
@@ -89,16 +102,18 @@ namespace Enemy
 
         public void GroundPoundAttackEvent()
         {
+            SFXController.PlayGroundPound();
             EventManager.OnGroundPound.Invoke();
         }
 
         public void Cast()
         {
+            SFXController.PlayCast();
             _projectileHandler.AttackTowards(playerTransform);
         }
         
         
-        public void OnChangedHealth(int health)
+        public void OnChangedHealthEnemy(int health)
         {
             if (health <= 0)
             {
@@ -109,6 +124,8 @@ namespace Enemy
         private void Die()
         {
             currentState.ChangeState(_dieState);
+            EventManager.OnBossDeath.Invoke();
+            EventManager.OnSecondBossDefeat.Invoke();
         }
 
         private IEnumerator WaitIntervalUntilNextAttack()

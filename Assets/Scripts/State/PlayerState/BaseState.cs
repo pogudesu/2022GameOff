@@ -39,6 +39,7 @@ namespace StateMachine.PlayerState
         protected virtual void RunAnimation(string str, bool active)
         {
             if(_actor?._animator == null) Debug.LogError("Animator is null on Actor " + this);
+            if (_actor?._animator == null) return;
             _actor._animator.SetBool(str, active);
         }
     
