@@ -1,5 +1,7 @@
 # Game Off Game Jam 2022
 
+Game Build: https://pogudesu.itch.io/protags-quest
+
 Team Member:
 - Pogu Desu Username: pogudesu
 - Jihad-Joe  Username: Linkfoxhay
